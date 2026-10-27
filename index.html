@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pink Beauty Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   PINK — design tokens (Webflow Variables / Figma Variables)
+   ========================================================= */
+:root{
+  --pink-50:#FBF4F2; --pink-100:#F6E4E1; --pink-200:#EDCBC6;
+  --pink-300:#F2B8D2; --pink-400:#E8A3C5; --pink-500:#D9789F; --pink-700:#8C2F4B; --pink-900:#4A1527;
+  --night:#141113; --night-2:#1E191C;
+  --ink:#1F1418; --ink-60:#6B5A60; --white:#FFFFFF;
+  --grad-pink:linear-gradient(120deg,#F7C9DD 0%,#E8A3C5 45%,#D9789F 100%);
+  --glow:0 0 28px rgba(232,163,197,.55);
+  --font-logo:"Anton",Impact,sans-serif;
+  --font-display:"Cormorant Garamond",Georgia,serif;
+  --font-body:"Manrope",system-ui,sans-serif;
+  --radius-s:8px; --radius-m:16px; --radius-l:32px; --radius-pill:999px;
+  --container-large:1280px; --gutter:2.5rem; --section-large:7.5rem; --section-medium:5rem;
+  --bg:var(--pink-50); --text:var(--ink); --muted:var(--ink-60); --surface:var(--pink-100); --line:var(--pink-200); --accent:var(--pink-700);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg:#1A1114;--text:#F6E4E1;--muted:#C2A9AF;--surface:#241A1E;--line:#3E2A32;--accent:#E8A3C5}
+}
+:root[data-theme="dark"]{--bg:#1A1114;--text:#F6E4E1;--muted:#C2A9AF;--surface:#241A1E;--line:#3E2A32;--accent:#E8A3C5}
+
+*,*::before,*::after{box-sizing:border-box}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;line-height:1.05;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(2.5rem,5vw,4.25rem)}
+p{margin:0}
+em{font-style:italic;color:var(--accent)}
+
+.page-wrapper{overflow-x:clip}
+.padding-global{padding-left:var(--gutter);padding-right:var(--gutter)}
+.container-large{max-width:var(--container-large);margin:0 auto}
+.padding-section-large{padding-top:var(--section-large);padding-bottom:var(--section-large)}
+.padding-section-medium{padding-top:var(--section-medium);padding-bottom:var(--section-medium)}
+.text-eyebrow{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.text-size-large{font-size:1.2rem;line-height:1.55}
+.text-color-muted{color:var(--muted)}
+.margin-bottom-s{margin-bottom:1rem}.margin-bottom-l{margin-bottom:3.5rem}
+.image-cover{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- buttons: gradient + glowing outline ---------- */
+.button{--btn-bg:var(--bg);position:relative;display:inline-flex;align-items:center;justify-content:center;gap:.6rem;padding:1rem 1.8rem;border-radius:var(--radius-pill);
+  background:var(--grad-pink);background-size:180% 100%;background-position:0% 50%;color:#2B0F1C;font-weight:700;font-size:.95rem;text-decoration:none;border:0;cursor:pointer;font-family:inherit;
+  box-shadow:0 8px 24px -10px rgba(217,120,159,.7),inset 0 1px 0 rgba(255,255,255,.5);transition:background-position .5s ease,box-shadow .35s ease,transform .35s ease}
+.button:hover{background-position:100% 50%;box-shadow:var(--glow),0 0 0 1px rgba(255,255,255,.35) inset;transform:translateY(-2px)}
+.button.is-outline{background:linear-gradient(var(--btn-bg),var(--btn-bg)) padding-box,var(--grad-pink) border-box;border:1.5px solid transparent;color:var(--text);box-shadow:none}
+.button.is-outline:hover{box-shadow:0 0 22px rgba(232,163,197,.45),inset 0 0 14px rgba(232,163,197,.22)}
+.button.is-dark-bg{--btn-bg:var(--night);color:#F6E4E1}
+.button-arrow{transition:transform .3s}.button:hover .button-arrow{transform:translateX(4px)}
+
+/* ---------- reveal ---------- */
+html.js [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+html.js [data-reveal].is-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){html.js [data-reveal]{opacity:1;transform:none;transition:none}}
+
+/* ========== HERO ========== */
+.section_hero{background:var(--pink-400);padding:14px}
+.hero_component{position:relative;min-height:max(640px,calc(100svh - 28px));background:var(--night);border-radius:22px;overflow:hidden;color:#F6E4E1;display:flex;flex-direction:column}
+.hero_component::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 60%,rgba(232,163,197,.16),transparent 70%);pointer-events:none}
+.navbar_component{position:relative;z-index:5}
+.navbar_container{display:flex;align-items:center;justify-content:space-between;gap:2rem;padding:1.4rem 2rem}
+.navbar_brand{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:#F6E4E1}
+.navbar_brand strong{font-family:var(--font-logo);font-weight:400;font-size:1.35rem;letter-spacing:.06em;color:var(--pink-400);margin-right:.5rem;vertical-align:-2px}
+.navbar_menu{display:flex;gap:2rem}
+.navbar_link{text-decoration:none;font-size:.88rem;color:rgba(246,228,225,.7);transition:color .2s}
+.navbar_link:hover{color:var(--pink-300)}
+.navbar_button-wrapper{display:flex;align-items:center;gap:1rem}
+.navbar_menu-button{display:none;background:none;border:1px solid rgba(232,163,197,.5);border-radius:var(--radius-pill);width:3rem;height:3rem;cursor:pointer;color:#F6E4E1;align-items:center;justify-content:center}
+
+.hero_stage{position:absolute;inset:0;z-index:1;overflow:hidden}
+.hero_logo{position:absolute;left:0;right:0;top:21%;text-align:center;font-family:var(--font-logo);font-weight:400;font-size:clamp(9rem,37vw,36rem);line-height:.82;letter-spacing:.01em;margin:0;user-select:none;white-space:nowrap}
+.hero_logo.is-fill{color:var(--pink-400);z-index:1}
+.hero_logo.is-outline{color:transparent;-webkit-text-stroke:2px var(--pink-400);z-index:3;pointer-events:none}
+.hero_girl{position:absolute;z-index:2;bottom:0;left:50%;transform:translateX(-50%);height:82%;aspect-ratio:2/3;display:flex;justify-content:center}
+.hero_girl img{height:100%;width:auto;max-width:none;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.hero_girl-canvas{position:absolute;top:0;left:50%;transform:translateX(-50%);pointer-events:none;filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+.hero_girl.is-gl img{opacity:0}
+.hero_caption{position:absolute;left:2rem;top:6.6rem;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,228,225,.6);z-index:4}
+.hero_bottom{position:relative;margin-top:auto;z-index:4;display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;padding:0 2rem 2rem}
+.hero_text{max-width:22rem;font-size:1.02rem;color:rgba(246,228,225,.82);background:rgba(20,17,19,.55);backdrop-filter:blur(10px);padding:1.1rem 1.25rem;border-radius:var(--radius-m);border:1px solid rgba(232,163,197,.18)}
+.hero_buttons{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:flex-end}
+.hero_hint{position:absolute;right:2rem;top:6.6rem;z-index:4;font-size:.75rem;color:rgba(246,228,225,.5);letter-spacing:.1em;text-transform:uppercase}
+
+/* ========== marquee ========== */
+.marquee_component{background:var(--night);color:var(--pink-300);overflow:hidden;padding:1.1rem 0;border-top:1px solid rgba(232,163,197,.15)}
+.marquee_track{display:flex;gap:3rem;width:max-content;animation:marquee 32s linear infinite;font-family:var(--font-display);font-size:1.75rem;font-style:italic}
+.marquee_item{display:flex;align-items:center;gap:3rem;white-space:nowrap}
+.marquee_item::after{content:"✦";font-style:normal;font-size:1rem;color:var(--pink-500)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee_track{animation:none}}
+
+/* ========== about ========== */
+.about_component{display:grid;grid-template-columns:.9fr 1.1fr;gap:5rem;align-items:center}
+.about_images{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.about_image{aspect-ratio:3/4;border-radius:var(--radius-l);overflow:hidden}
+.about_image.is-offset{margin-top:4rem}
+.about_content{display:flex;flex-direction:column;gap:1.5rem}
+.about_list{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem}
+.about_item{padding-top:1.25rem;border-top:1px solid var(--line)}
+.about_item-title{font-weight:600;margin-bottom:.35rem}
+.about_item-text{font-size:.9rem;color:var(--muted)}
+
+/* ========== services ========== */
+.section_services{background:var(--surface)}
+.services_header{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.services_tabs-menu{display:flex;gap:.5rem;flex-wrap:wrap}
+.services_tab-link{padding:.7rem 1.3rem;border-radius:var(--radius-pill);font:inherit;font-size:.9rem;color:var(--text);cursor:pointer;
+  background:linear-gradient(var(--surface),var(--surface)) padding-box,linear-gradient(var(--line),var(--line)) border-box;border:1.5px solid transparent;transition:all .3s}
+.services_tab-link:hover{background:linear-gradient(var(--surface),var(--surface)) padding-box,var(--grad-pink) border-box;box-shadow:0 0 16px rgba(232,163,197,.35)}
+.services_tab-link.is-active{background:var(--grad-pink);color:#2B0F1C;font-weight:600;box-shadow:0 6px 18px -8px rgba(217,120,159,.8)}
+.services_tab-pane{display:none;grid-template-columns:.8fr 1.2fr;gap:4rem;align-items:start}
+.services_tab-pane.is-active{display:grid;animation:fadeIn .5s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.services_image{aspect-ratio:1/1.15;border-radius:var(--radius-l);overflow:hidden}
+.services_list{display:flex;flex-direction:column}
+.services_item{display:grid;grid-template-columns:1fr auto;gap:.25rem 2rem;padding:1.5rem 0;border-bottom:1px solid var(--line)}
+.services_item:first-child{padding-top:0}
+.services_item-name{font-family:var(--font-display);font-size:1.6rem;line-height:1.2}
+.services_item-price{font-weight:600;white-space:nowrap;align-self:center}
+.services_item-desc{font-size:.9rem;color:var(--muted);grid-column:1/-1}
+
+/* ========== team ========== */
+.team_header{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
+.team_list{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.team_item{display:flex;flex-direction:column;gap:1rem}
+.team_image{aspect-ratio:3/4;border-radius:var(--radius-m);overflow:hidden}
+.team_image img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.team_item:hover .team_image img{transform:scale(1.06)}
+.team_name{font-family:var(--font-display);font-size:1.6rem;line-height:1.1}
+.team_role{font-size:.85rem;color:var(--muted)}
+
+/* ========== gallery ========== */
+.gallery_grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;grid-auto-flow:dense;gap:1rem}
+.gallery_item{border-radius:var(--radius-m);overflow:hidden}
+.gallery_item img{transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.gallery_item:hover img{transform:scale(1.05)}
+.gallery_item.is-tall{grid-row:span 2}
+.gallery_item.is-wide{grid-column:span 2}
+
+/* ========== benefits ========== */
+.section_benefits{background:var(--night);color:var(--pink-100)}
+.section_benefits .text-eyebrow,.section_benefits em{color:var(--pink-400)}
+.benefits_list{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(232,163,197,.18);border-radius:var(--radius-m);overflow:hidden}
+.benefits_item{background:var(--night);padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1rem;transition:background .4s}
+.benefits_item:hover{background:var(--night-2)}
+.benefits_number{font-family:var(--font-logo);font-size:1.4rem;color:var(--pink-400)}
+.benefits_title{font-family:var(--font-display);font-size:1.6rem;line-height:1.15}
+.benefits_text{font-size:.9rem;color:#CDB7BD}
+
+/* ========== booking ========== */
+.booking_component{display:grid;grid-template-columns:1fr 1fr;border-radius:var(--radius-l);overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.booking_image{min-height:100%}
+.booking_content{padding:4rem;display:flex;flex-direction:column;gap:1.5rem}
+.booking_form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form_field-wrapper{display:flex;flex-direction:column;gap:.4rem}
+.form_field-wrapper.is-full{grid-column:1/-1}
+.form_label{font-size:.8rem;font-weight:600}
+.form_input{font:inherit;font-size:.95rem;padding:.9rem 1rem;border-radius:var(--radius-s);border:1px solid var(--line);background:var(--surface);color:var(--text);outline:none;transition:border-color .2s,box-shadow .2s;width:100%}
+.form_input:focus{border-color:var(--pink-400);box-shadow:0 0 0 4px rgba(232,163,197,.25)}
+.form_note{font-size:.75rem;color:var(--muted);grid-column:1/-1}
+.booking_form .button{grid-column:1/-1}
+.form_success{display:none;padding:1.25rem;border-radius:var(--radius-s);background:var(--surface);font-weight:500}
+
+/* ========== footer ========== */
+.footer_component{background:var(--night);color:#F6E4E1}
+.footer_top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:3rem}
+.footer_logo{font-family:var(--font-logo);font-size:5rem;line-height:.9;color:var(--pink-400)}
+.footer_title{font-size:.75rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(246,228,225,.5);margin-bottom:1rem}
+.footer_links{display:flex;flex-direction:column;gap:.6rem;font-size:.95rem}
+.footer_links a{text-decoration:none;transition:color .2s}
+.footer_links a:hover{color:var(--pink-300)}
+.footer_bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:2rem;margin-top:4rem;border-top:1px solid rgba(232,163,197,.15);font-size:.8rem;color:rgba(246,228,225,.5)}
+
+/* ========== tablet ≤991 ========== */
+@media (max-width:991px){
+  :root{--gutter:1.5rem;--section-large:5rem;--section-medium:3.5rem}
+  .navbar_menu{display:none}
+  .navbar_menu-button{display:inline-flex}
+  .navbar_menu.is-open{display:flex;flex-direction:column;position:absolute;top:4.6rem;left:1rem;right:1rem;background:var(--night-2);padding:1.5rem;border-radius:var(--radius-m);border:1px solid rgba(232,163,197,.2);gap:1.1rem}
+  .hero_logo{font-size:40vw;top:19%}
+  .hero_girl{height:78%}
+  .hero_bottom{flex-direction:column;align-items:stretch}
+  .hero_buttons{justify-content:flex-start}
+  .about_component,.services_tab-pane.is-active,.booking_component{grid-template-columns:1fr}
+  .team_list,.benefits_list,.gallery_grid{grid-template-columns:repeat(2,1fr)}
+  .booking_image{min-height:300px}
+  .booking_content{padding:2.5rem}
+  .footer_top{grid-template-columns:1fr 1fr}
+}
+/* ========== mobile ≤478 ========== */
+@media (max-width:478px){
+  :root{--gutter:1rem}
+  .section_hero{padding:8px}
+  .hero_component{min-height:calc(100svh - 16px);border-radius:16px}
+  .navbar_container{padding:1rem}
+  .navbar_button-wrapper .button{display:none}
+  .hero_logo{top:14%;font-size:50vw}
+  .hero_girl{height:80%}
+  .hero_text{font-size:.92rem;padding:.9rem 1rem}
+  .hero_caption,.hero_hint{display:none}
+  .hero_bottom{padding:0 1rem 1rem}
+  .hero_logo.is-outline{-webkit-text-stroke-width:1.2px}
+  .about_list,.booking_form,.benefits_list,.footer_top{grid-template-columns:1fr}
+  .team_list{gap:1rem}.team_name{font-size:1.3rem}
+  .gallery_grid{grid-auto-rows:160px}
+  .booking_content{padding:1.75rem}
+  .services_item-name{font-size:1.35rem}
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- ================= HERO ================= -->
+  <section class="section_hero" id="hero">
+    <div class="hero_component">
+      <header class="navbar_component">
+        <nav class="navbar_container" aria-label="Головне меню">
+          <a href="#hero" class="navbar_brand"><strong>PINK</strong>Beauty Studio</a>
+          <div class="navbar_menu">
+            <a href="#about" class="navbar_link">Про нас</a>
+            <a href="#services" class="navbar_link">Послуги</a>
+            <a href="#team" class="navbar_link">Майстри</a>
+            <a href="#gallery" class="navbar_link">Роботи</a>
+            <a href="#contacts" class="navbar_link">Контакти</a>
+          </div>
+          <div class="navbar_button-wrapper">
+            <a href="#booking" class="button is-outline is-dark-bg">Записатися</a>
+            <button class="navbar_menu-button" aria-label="Відкрити меню" aria-expanded="false">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor" stroke-width="1.5"/></svg>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <div class="hero_stage">
+        <div class="hero_caption">Creative beauty · Київ</div>
+        <div class="hero_hint">Рухайте мишкою ↔</div>
+        <h1 class="hero_logo is-fill">PINK</h1>
+        <div class="hero_girl">
+          <img src="images/girl.webp" alt="Дівчина з довгим хвилястим блонд-волоссям, вигляд зі спини" width="900" height="1350">
+        </div>
+        <div class="hero_logo is-outline" aria-hidden="true">PINK</div>
+      </div>
+
+      <div class="hero_bottom">
+        <p class="hero_text">Салон краси, де догляд стає ритуалом. Колористика, укладки, манікюр і педикюр від майстрів, які чують вас.</p>
+        <div class="hero_buttons">
+          <a href="#booking" class="button">Записатися онлайн <span class="button-arrow">→</span></a>
+          <a href="#services" class="button is-outline is-dark-bg">Послуги та ціни</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MARQUEE ================= -->
+  <div class="marquee_component" aria-hidden="true">
+    <div class="marquee_track">
+      <div class="marquee_item">Колористика</div><div class="marquee_item">Стрижки</div><div class="marquee_item">Укладки</div><div class="marquee_item">Манікюр</div><div class="marquee_item">Педикюр</div><div class="marquee_item">Догляд</div>
+      <div class="marquee_item">Колористика</div><div class="marquee_item">Стрижки</div><div class="marquee_item">Укладки</div><div class="marquee_item">Манікюр</div><div class="marquee_item">Педикюр</div><div class="marquee_item">Догляд</div>
+    </div>
+  </div>
+
+  <main class="main-wrapper">
+
+    <!-- ================= ABOUT ================= -->
+    <section class="section_about" id="about">
+      <div class="padding-global"><div class="container-large"><div class="padding-section-large">
+        <div class="about_component">
+          <div class="about_images" data-reveal>
+            <div class="about_image"><img class="image-cover" src="images/salon-interior.jpg" alt="Клієнтка з довгим рівним волоссям у залі салону" loading="lazy"></div>
+            <div class="about_image is-offset"><img class="image-cover" src="images/salon-hair-waves.jpg" alt="Локони на світлому волоссі в кріслі майстра" loading="lazy"></div>
+          </div>
+          <div class="about_content" data-reveal>
+            <div class="text-eyebrow">Про салон</div>
+            <h2>Місце, куди хочеться <em>повертатися</em></h2>
+            <p class="text-size-large text-color-muted">Pink — затишна студія без поспіху. Кожен візит починається з консультації, а закінчується результатом, який тримається довго.</p>
+            <div class="about_list">
+              <div class="about_item"><div class="about_item-title">Преміальна косметика</div><div class="about_item-text">Професійні бренди з сертифікатами.</div></div>
+              <div class="about_item"><div class="about_item-title">Стерильність</div><div class="about_item-text">Сухожар і одноразові матеріали для кожного гостя.</div></div>
+              <div class="about_item"><div class="about_item-title">Без поспіху</div><div class="about_item-text">Час на процедуру з запасом.</div></div>
+              <div class="about_item"><div class="about_item-title">Кава та тиша</div><div class="about_item-text">Лаунж-зона й авторські напої.</div></div>
+            </div>
+          </div>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="section_services" id="services">
+      <div class="padding-global"><div class="container-large"><div class="padding-section-large">
+        <div class="services_header margin-bottom-l" data-reveal>
+          <div><div class="text-eyebrow margin-bottom-s">Послуги та ціни</div><h2>Що ми <em>робимо</em></h2></div>
+          <div class="services_tabs-menu" role="tablist">
+            <button class="services_tab-link is-active" data-tab="hair" role="tab" aria-selected="true">Волосся</button>
+            <button class="services_tab-link" data-tab="nails" role="tab" aria-selected="false">Манікюр</button>
+            <button class="services_tab-link" data-tab="pedi" role="tab" aria-selected="false">Педикюр</button>
+          </div>
+        </div>
+        <div class="services_tabs-content" data-reveal>
+          <div class="services_tab-pane is-active" data-pane="hair" role="tabpanel">
+            <div class="services_image"><img class="image-cover" src="images/hair-ash-waves.jpg" alt="Попелясте блонд-волосся з хвилями" loading="lazy"></div>
+            <div class="services_list">
+              <div class="services_item"><div class="services_item-name">Жіноча стрижка</div><div class="services_item-price">від 800 ₴</div><div class="services_item-desc">Консультація, миття, стрижка та укладка.</div></div>
+              <div class="services_item"><div class="services_item-name">Фарбування в один тон</div><div class="services_item-price">від 1 800 ₴</div><div class="services_item-desc">Професійні барвники, догляд після фарбування.</div></div>
+              <div class="services_item"><div class="services_item-name">AirTouch / балаяж</div><div class="services_item-price">від 3 500 ₴</div><div class="services_item-desc">Складне фарбування з природними переходами.</div></div>
+              <div class="services_item"><div class="services_item-name">Укладка, локони</div><div class="services_item-price">від 600 ₴</div><div class="services_item-desc">Голлівудська хвиля, об'єм або гладкість.</div></div>
+            </div>
+          </div>
+          <div class="services_tab-pane" data-pane="nails" role="tabpanel">
+            <div class="services_image"><img class="image-cover" src="images/nails-berry.jpg" alt="Манікюр ягідного кольору" loading="lazy"></div>
+            <div class="services_list">
+              <div class="services_item"><div class="services_item-name">Манікюр з покриттям</div><div class="services_item-price">від 650 ₴</div><div class="services_item-desc">Комбінований манікюр, вирівнювання, гель-лак.</div></div>
+              <div class="services_item"><div class="services_item-name">Френч / омбре</div><div class="services_item-price">від 800 ₴</div><div class="services_item-desc">Молочні та рожеві градієнти, класичний френч.</div></div>
+              <div class="services_item"><div class="services_item-name">Нарощування</div><div class="services_item-price">від 1 100 ₴</div><div class="services_item-desc">Будь-яка довжина та форма.</div></div>
+              <div class="services_item"><div class="services_item-name">Дизайн</div><div class="services_item-price">від 50 ₴</div><div class="services_item-desc">Втирка, малюнки, стрази — за ніготь.</div></div>
+            </div>
+          </div>
+          <div class="services_tab-pane" data-pane="pedi" role="tabpanel">
+            <div class="services_image"><img class="image-cover" src="images/pedi-burgundy.jpg" alt="Педикюр бордового кольору" loading="lazy"></div>
+            <div class="services_list">
+              <div class="services_item"><div class="services_item-name">Педикюр SMART</div><div class="services_item-price">від 850 ₴</div><div class="services_item-desc">Делікатна обробка дисками без порізів.</div></div>
+              <div class="services_item"><div class="services_item-name">Педикюр з покриттям</div><div class="services_item-price">від 1 000 ₴</div><div class="services_item-desc">Повна обробка стоп і гель-лак.</div></div>
+              <div class="services_item"><div class="services_item-name">Експрес-покриття</div><div class="services_item-price">від 500 ₴</div><div class="services_item-desc">Зняття та нове покриття за 40 хвилин.</div></div>
+              <div class="services_item"><div class="services_item-name">SPA-догляд для стоп</div><div class="services_item-price">від 450 ₴</div><div class="services_item-desc">Пілінг, маска і масаж.</div></div>
+            </div>
+          </div>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ================= TEAM ================= -->
+    <section class="section_team" id="team">
+      <div class="padding-global"><div class="container-large"><div class="padding-section-large">
+        <div class="team_header margin-bottom-l" data-reveal>
+          <div><div class="text-eyebrow margin-bottom-s">Команда</div><h2>Наші <em>майстри</em></h2></div>
+          <p class="text-color-muted" style="max-width:26rem">На фото — роботи кожної майстрині. Обирайте за стилем, який вам близький.</p>
+        </div>
+        <div class="team_list" data-reveal>
+          <div class="team_item"><div class="team_image"><img class="image-cover" src="images/hair-balayage.jpg" alt="Робота колористки: балаяж" loading="lazy"></div><div><div class="team_name">Анна</div><div class="team_role">Топ-колористка</div></div></div>
+          <div class="team_item"><div class="team_image"><img class="image-cover" src="images/nails-french-ombre.jpg" alt="Робота майстрині манікюру: френч-омбре" loading="lazy"></div><div><div class="team_name">Марія</div><div class="team_role">Майстриня манікюру</div></div></div>
+          <div class="team_item"><div class="team_image"><img class="image-cover" src="images/pedi-nude.jpg" alt="Робота майстрині педикюру: нюдове покриття" loading="lazy"></div><div><div class="team_name">Олена</div><div class="team_role">Майстриня педикюру</div></div></div>
+          <div class="team_item"><div class="team_image"><img class="image-cover" src="images/hair-blonde-volume.jpg" alt="Робота стилістки: об'ємна укладка блонд" loading="lazy"></div><div><div class="team_name">Дарина</div><div class="team_role">Стилістка, укладки</div></div></div>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+    <section class="section_gallery" id="gallery">
+      <div class="padding-global"><div class="container-large"><div class="padding-section-medium" style="padding-top:0">
+        <div data-reveal><div class="text-eyebrow margin-bottom-s">Портфоліо</div><h2 class="margin-bottom-l">Наші <em>роботи</em></h2></div>
+        <div class="gallery_grid" data-reveal>
+          <div class="gallery_item is-tall"><img class="image-cover" src="images/hair-bronde-waves.jpg" alt="Бронд-волосся з локонами" loading="lazy"></div>
+          <div class="gallery_item is-wide"><img class="image-cover" src="images/nails-pink-ombre.jpg" alt="Рожевий омбре-манікюр" loading="lazy"></div>
+          <div class="gallery_item"><img class="image-cover" src="images/nails-pink-gloss.jpg" alt="Ніжно-рожевий глянцевий манікюр" loading="lazy"></div>
+          <div class="gallery_item"><img class="image-cover" src="images/pedi-pink.jpg" alt="Рожевий педикюр" loading="lazy"></div>
+          <div class="gallery_item is-tall"><img class="image-cover" src="images/hair-ombre.jpg" alt="Омбре на довгому волоссі" loading="lazy"></div>
+          <div class="gallery_item is-wide"><img class="image-cover" src="images/hair-long-straight.jpg" alt="Довге рівне блонд-волосся" loading="lazy"></div>
+          <div class="gallery_item"><img class="image-cover" src="images/nails-mauve.jpg" alt="Манікюр кольору мальви" loading="lazy"></div>
+          <div class="gallery_item"><img class="image-cover" src="images/nails-coral.jpg" alt="Коралловий манікюр" loading="lazy"></div>
+          <div class="gallery_item is-wide"><img class="image-cover" src="images/hair-straight-brown.jpg" alt="Рівне каштанове волосся" loading="lazy"></div>
+          <div class="gallery_item"><img class="image-cover" src="images/nails-nude.jpg" alt="Нюдовий манікюр" loading="lazy"></div>
+          <div class="gallery_item"><img class="image-cover" src="images/pedi-natural.jpg" alt="Натуральний педикюр" loading="lazy"></div>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ================= BENEFITS ================= -->
+    <section class="section_benefits">
+      <div class="padding-global"><div class="container-large"><div class="padding-section-large">
+        <div data-reveal><div class="text-eyebrow margin-bottom-s">Чому Pink</div><h2 class="margin-bottom-l">Турбота в <em>деталях</em></h2></div>
+        <div class="benefits_list" data-reveal>
+          <div class="benefits_item"><div class="benefits_number">01</div><div class="benefits_title">Онлайн-запис 24/7</div><div class="benefits_text">Оберіть майстра і час за хвилину.</div></div>
+          <div class="benefits_item"><div class="benefits_number">02</div><div class="benefits_title">Гарантія результату</div><div class="benefits_text">Безкоштовна корекція протягом 7 днів.</div></div>
+          <div class="benefits_item"><div class="benefits_number">03</div><div class="benefits_title">Подарункові сертифікати</div><div class="benefits_text">На будь-яку суму чи послугу.</div></div>
+          <div class="benefits_item"><div class="benefits_number">04</div><div class="benefits_title">Програма лояльності</div><div class="benefits_text">Знижка до 15% для постійних гостей.</div></div>
+        </div>
+      </div></div></div>
+    </section>
+
+    <!-- ================= BOOKING ================= -->
+    <section class="section_booking" id="booking">
+      <div class="padding-global"><div class="container-large"><div class="padding-section-large">
+        <div class="booking_component" data-reveal>
+          <div class="booking_image"><img class="image-cover" src="images/nails-milky.jpg" alt="Молочний манікюр на тлі светра" loading="lazy"></div>
+          <div class="booking_content">
+            <div class="text-eyebrow">Онлайн-запис</div>
+            <h2>Запишіться <em>на візит</em></h2>
+            <p class="text-color-muted">Залиште заявку — адміністратор зателефонує протягом 15 хвилин і підтвердить час.</p>
+            <form class="booking_form">
+              <div class="form_field-wrapper"><label class="form_label" for="f-name">Ім'я</label><input class="form_input" id="f-name" name="name" placeholder="Ваше ім'я" required></div>
+              <div class="form_field-wrapper"><label class="form_label" for="f-phone">Телефон</label><input class="form_input" id="f-phone" name="phone" type="tel" placeholder="+38 (0__) ___-__-__" required></div>
+              <div class="form_field-wrapper"><label class="form_label" for="f-service">Послуга</label><select class="form_input" id="f-service" name="service"><option>Волосся</option><option>Манікюр</option><option>Педикюр</option></select></div>
+              <div class="form_field-wrapper"><label class="form_label" for="f-date">Бажана дата</label><input class="form_input" id="f-date" name="date" type="date"></div>
+              <div class="form_field-wrapper is-full"><label class="form_label" for="f-msg">Коментар</label><textarea class="form_input" id="f-msg" name="message" rows="3" placeholder="Побажання до майстра чи часу"></textarea></div>
+              <button type="submit" class="button">Надіслати заявку <span class="button-arrow">→</span></button>
+              <p class="form_note">Натискаючи кнопку, ви погоджуєтеся на обробку персональних даних.</p>
+            </form>
+            <div class="form_success">Дякуємо! Ми зателефонуємо вам найближчим часом.</div>
+          </div>
+        </div>
+      </div></div></div>
+    </section>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer_component" id="contacts">
+    <div class="padding-global"><div class="container-large"><div class="padding-section-medium">
+      <div class="footer_top">
+        <div><div class="footer_logo margin-bottom-s">PINK</div><p style="color:rgba(246,228,225,.6)">Салон краси для тих, хто цінує себе.</p></div>
+        <div><div class="footer_title">Адреса</div><div class="footer_links"><span>м. Київ, вул. Рожева, 1</span><span>Щодня 10:00–21:00</span></div></div>
+        <div><div class="footer_title">Контакти</div><div class="footer_links"><a href="tel:+380000000000">+38 (000) 000-00-00</a><a href="mailto:hello@pink.salon">hello@pink.salon</a></div></div>
+        <div><div class="footer_title">Соцмережі</div><div class="footer_links"><a href="#">Instagram</a><a href="#">TikTok</a><a href="#">Telegram</a></div></div>
+      </div>
+      <div class="footer_bottom"><span>© 2026 Pink Beauty Studio</span><span>Кейс: дизайн у Figma · розробка у Webflow</span></div>
+    </div></div></div>
+  </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+/* PINK — interactions: smooth scroll, hair wave (WebGL), reveal, tabs, menu */
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  /* ---------- Smooth scroll (Lenis) ---------- */
+  var lenis = null;
+  if (!reduce && window.Lenis) {
+    lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 0.9 });
+    (function raf(t) { lenis.raf(t); requestAnimationFrame(raf); })(performance.now());
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (id.length < 2) return;
+      var el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(el, { offset: -20, duration: 1.4 });
+      else el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------- Reveal on scroll ---------- */
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+  }, { rootMargin: '0px 0px -10% 0px' }) : null;
+  document.querySelectorAll('[data-reveal]').forEach(function (el) { io ? io.observe(el) : el.classList.add('is-in'); });
+
+  /* ---------- Tabs ---------- */
+  document.querySelectorAll('[data-tab]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var t = btn.getAttribute('data-tab');
+      document.querySelectorAll('[data-tab]').forEach(function (b) { var on = b === btn; b.classList.toggle('is-active', on); b.setAttribute('aria-selected', on); });
+      document.querySelectorAll('[data-pane]').forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-pane') === t); });
+    });
+  });
+
+  /* ---------- Mobile menu ---------- */
+  var mb = document.querySelector('.navbar_menu-button'), mm = document.querySelector('.navbar_menu');
+  if (mb && mm) {
+    mb.addEventListener('click', function () { var o = mm.classList.toggle('is-open'); mb.setAttribute('aria-expanded', o); });
+    mm.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { mm.classList.remove('is-open'); mb.setAttribute('aria-expanded', false); }); });
+  }
+
+  /* ---------- Form (demo success state) ---------- */
+  var form = document.querySelector('.booking_form');
+  if (form && !form.closest('.w-form')) {
+    form.addEventListener('submit', function (e) { e.preventDefault(); form.style.display = 'none'; var s = document.querySelector('.form_success'); if (s) s.style.display = 'block'; });
+  }
+
+  /* ---------- Hair wave (WebGL) ---------- */
+  var wrap = document.querySelector('.hero_girl');
+  if (!wrap) return;
+  var img = wrap.querySelector('img');
+  var canvas = document.createElement('canvas');
+  canvas.className = 'hero_girl-canvas';
+  canvas.setAttribute('aria-hidden', 'true');
+  var gl = canvas.getContext('webgl', { premultipliedAlpha: false, alpha: true, antialias: false });
+  if (!gl || reduce) return;
+
+  var PAD = 0.12; // extra canvas width each side, so hair can swing outside
+  var vs = 'attribute vec2 p;varying vec2 v;void main(){v=vec2(p.x*.5+.5,.5-p.y*.5);gl_Position=vec4(p,0.,1.);}';
+  var fs = [
+    'precision mediump float;',
+    'uniform sampler2D t;uniform float time,pad;uniform vec2 force;varying vec2 v;',
+    'float hair(vec4 c){float l=dot(c.rgb,vec3(.299,.587,.114));return smoothstep(.2,.36,l)*c.a;}',
+    'vec4 tex(vec2 u){float inb=step(0.,u.x)*step(u.x,1.)*step(0.,u.y)*step(u.y,1.);return texture2D(t,clamp(u,0.,1.))*inb;}',
+    'void main(){',
+    ' vec2 iuv=vec2((v.x-pad)/(1.-2.*pad),v.y);',
+    ' float w=pow(smoothstep(.06,1.,v.y),1.35);',
+    ' float wave=sin(v.y*11.-time*1.7+iuv.x*3.)*.55+sin(v.y*5.5-time*.9)*.45;',
+    ' vec2 off=vec2(force.x*w*(1.+.45*wave)+.003*w*sin(time*.7+v.y*4.),force.y*w*.35+.0015*w*sin(time*.6+iuv.x*4.));',
+    ' vec4 o=tex(iuv);vec4 m=tex(iuv-off);',
+    ' float hm=hair(m),ho=hair(o);',
+    ' vec4 c=m*hm+o*(1.-ho)*(1.-hm);',
+    ' gl_FragColor=c;}'
+  ].join('');
+  function sh(type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+  var pr = gl.createProgram();
+  gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs)); gl.linkProgram(pr);
+  if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) return;
+  gl.useProgram(pr);
+  var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  var loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+  var uT = gl.getUniformLocation(pr, 'time'), uF = gl.getUniformLocation(pr, 'force');
+  gl.uniform1f(gl.getUniformLocation(pr, 'pad'), PAD);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+  function start() {
+    var tx = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tx);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    try { gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, texImg); } catch (e) { return; }
+    wrap.appendChild(canvas); wrap.classList.add('is-gl');
+    resize(); window.addEventListener('resize', resize);
+    requestAnimationFrame(loop);
+  }
+  function resize() {
+    var r = img.getBoundingClientRect(), d = Math.min(window.devicePixelRatio || 1, 2);
+    var W = r.width / (1 - 2 * PAD);
+    canvas.style.width = W + 'px'; canvas.style.height = r.height + 'px';
+    canvas.width = Math.round(W * d); canvas.height = Math.round(r.height * d);
+    gl.viewport(0, 0, canvas.width, canvas.height);
+  }
+  // soft spring physics: hair lags behind the mouse and settles slowly
+  var lastX = null, lastY = null, target = { x: 0, y: 0 }, pos = { x: 0, y: 0 }, vel = { x: 0, y: 0 }, lean = 0, leanS = 0, prevT = 0;
+  window.addEventListener('pointermove', function (e) {
+    if (lastX !== null) {
+      var dx = Math.max(-60, Math.min(60, e.clientX - lastX)), dy = Math.max(-60, Math.min(60, e.clientY - lastY));
+      target.x += dx / window.innerWidth * 0.28;
+      target.y += dy / window.innerHeight * 0.12;
+    }
+    lastX = e.clientX; lastY = e.clientY;
+    lean = (e.clientX / window.innerWidth - 0.5) * 0.014;
+  }, { passive: true });
+  var visible = true;
+  if (io) new IntersectionObserver(function (es) { visible = es[0].isIntersecting; }).observe(wrap);
+  function loop(t) {
+    requestAnimationFrame(loop);
+    var dt = Math.min(3, prevT ? (t - prevT) / 16.67 : 1); prevT = t;
+    if (!visible) return;
+    var decay = Math.pow(0.965, dt), damp = Math.pow(0.93, dt);
+    target.x = Math.max(-0.055, Math.min(0.055, target.x)) * decay;
+    target.y = Math.max(-0.03, Math.min(0.03, target.y)) * decay;
+    leanS += (lean - leanS) * 0.03 * dt;
+    vel.x = (vel.x + (target.x + leanS - pos.x) * 0.018 * dt) * damp; pos.x += vel.x * dt;
+    vel.y = (vel.y + (target.y - pos.y) * 0.018 * dt) * damp; pos.y += vel.y * dt;
+    gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.uniform1f(uT, t / 1000); gl.uniform2f(uF, pos.x, pos.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+  }
+  var texImg = new Image(); texImg.crossOrigin = 'anonymous';
+  texImg.onload = function () { if (img.complete && img.naturalWidth) start(); else img.addEventListener('load', start); };
+  texImg.src = img.currentSrc || img.src;
+})();
+</script>
+</body>
+</html>
