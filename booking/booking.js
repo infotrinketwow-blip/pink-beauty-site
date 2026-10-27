@@ -136,34 +136,39 @@ var css = [
 ].join('\n');
 var st = document.createElement('style'); st.textContent = css; document.head.appendChild(st);
 
+/* ---------- language ---------- */
+var LANG = (root.getAttribute('data-lang') || 'uk').slice(0, 2) === 'en' ? 'en' : 'uk';
+var EN = {"Анна": "Anna", "Топ-колористка": "Senior colourist", "Дарина": "Daryna", "Стилістка, укладки": "Hair stylist", "Марія": "Maria", "Майстриня манікюру": "Nail artist", "Олена": "Olena", "Майстриня педикюру": "Pedicure specialist", "Волосся": "Hair", "Манікюр": "Manicure", "Педикюр": "Pedicure", "Жіноча стрижка": "Women's haircut", "Фарбування в один тон": "Single-colour dye", "AirTouch / балаяж": "AirTouch / balayage", "Укладка, локони": "Styling, curls", "Догляд і відновлення": "Care and repair", "Зачіска на подію": "Event hairstyle", "Манікюр з покриттям": "Gel manicure", "Френч / омбре": "French / ombre", "Нарощування": "Extensions", "Манікюр без покриття": "Manicure, no polish", "Зняття та укріплення": "Removal and strengthening", "Педикюр SMART": "SMART pedicure", "Педикюр з покриттям": "Gel pedicure", "Експрес-покриття": "Express polish", "SPA-догляд для стоп": "Foot spa", "Чоловічий педикюр": "Men's pedicure", "Обробка тріщин": "Cracked heel treatment", "Нд": "Sun", "Пн": "Mon", "Вт": "Tue", "Ср": "Wed", "Чт": "Thu", "Пт": "Fri", "Сб": "Sat", "січня": "January", "лютого": "February", "березня": "March", "квітня": "April", "травня": "May", "червня": "June", "липня": "July", "серпня": "August", "вересня": "September", "жовтня": "October", "листопада": "November", "грудня": "December", " год": " h", " хв": " min", "Клієнтка (приклад)": "Client (example)", "<b>Демо-режим.</b> Календар ще не підключено до таблиці салону, тому записи не зберігаються.": "<b>Demo mode.</b> The calendar isn't connected to the salon's sheet yet, so bookings aren't saved.", "<b>Немає зв'язку з розкладом.</b> Перевірте інтернет і оновіть сторінку або залиште заявку у формі нижче.": "<b>Can't reach the schedule.</b> Check your connection and reload the page.", "Завантажуємо вільні віконця…": "Loading free slots…", "<div class=\"pb-top\"><div class=\"pb-mode\" role=\"group\" aria-label=\"Режим\">": "<div class=\"pb-top\"><div class=\"pb-mode\" role=\"group\" aria-label=\"Mode\">", "\">Я клієнтка</button>": "\">I'm a client</button>", "\">Я майстриня</button></div></div>": "\">I'm an artist</button></div></div>", "Ранок": "Morning", "День": "Afternoon", "Вечір": "Evening", "<section class=\"pb-step\"><div class=\"pb-step-head\"><span class=\"pb-num\">i.</span><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Послуга</div></div>": "<section class=\"pb-step\"><div class=\"pb-step-head\"><span class=\"pb-num\">i.</span><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Service</div></div>", "<div class=\"pb-tabs\" role=\"group\" aria-label=\"Категорія\">": "<div class=\"pb-tabs\" role=\"group\" aria-label=\"Category\">", "\"><div class=\"pb-step-head\"><span class=\"pb-num\">ii.</span><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Майстриня</div></div>": "\"><div class=\"pb-step-head\"><span class=\"pb-num\">ii.</span><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Artist</div></div>", "\"><span class=\"pb-ava is-any\">✦</span><span>Будь-яка<small>найближчий вільний час</small></span></button>": "\"><span class=\"pb-ava is-any\">✦</span><span>Any artist<small>earliest free time</small></span></button>", "<div class=\"pb-empty\">Спершу оберіть послугу.</div>": "<div class=\"pb-empty\">Choose a service first.</div>", "\"><div class=\"pb-step-head\"><span class=\"pb-num\">iii.</span><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Дата і час</div></div>": "\"><div class=\"pb-step-head\"><span class=\"pb-num\">iii.</span><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Date and time</div></div>", "<div class=\"pb-dates\" role=\"group\" aria-label=\"Дата\" data-lenis-prevent>": "<div class=\"pb-dates\" role=\"group\" aria-label=\"Date\" data-lenis-prevent>", ", вихідний": ", closed", ", немає вільного часу": ", fully booked", "<div class=\"pb-empty\">На цей день вільних віконець немає. Оберіть іншу дату.</div>": "<div class=\"pb-empty\">No free slots on this day. Try another date.</div>", "<div class=\"pb-empty\">Оберіть дату. Зелена крапка означає, що є вільний час. Неділя вихідний.</div>": "<div class=\"pb-empty\">Pick a date. A green dot means there are free slots. Closed on Sundays.</div>", "<aside class=\"pb-summary\"><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Ваш запис</div><div class=\"pb-rows\">": "<aside class=\"pb-summary\"><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Your booking</div><div class=\"pb-rows\">", "Послуга": "Service", "Майстриня": "Artist", "будь-яка": "any", "Дата": "Date", "Час": "Time", "Вартість": "Price", "<div class=\"pb-field\"><label for=\"pb-name\">Ваше ім'я</label><input id=\"pb-name\" autocomplete=\"given-name\" maxlength=\"60\" value=\"": "<div class=\"pb-field\"><label for=\"pb-name\">Your name</label><input id=\"pb-name\" autocomplete=\"given-name\" maxlength=\"60\" value=\"", "<div class=\"pb-field\"><label for=\"pb-phone\">Телефон</label><input id=\"pb-phone\" type=\"tel\" autocomplete=\"tel\" inputmode=\"tel\" maxlength=\"20\" placeholder=\"+380\" value=\"": "<div class=\"pb-field\"><label for=\"pb-phone\">Phone</label><input id=\"pb-phone\" type=\"tel\" autocomplete=\"tel\" inputmode=\"tel\" maxlength=\"20\" placeholder=\"+380\" value=\"", "<div class=\"pb-field\"><label for=\"pb-note\">Побажання (необов'язково)</label><textarea id=\"pb-note\" maxlength=\"300\">": "<div class=\"pb-field\"><label for=\"pb-note\">Notes (optional)</label><textarea id=\"pb-note\" maxlength=\"300\">", "Записуємо…": "Booking…", "Записатися": "Book", "<div class=\"pb-mine\"><div class=\"pb-h\" role=\"heading\" aria-level=\"4\">Мої записи</div>": "<div class=\"pb-mine\"><div class=\"pb-h\" role=\"heading\" aria-level=\"4\">My bookings</div>", "Запис": "Booking", "\">Скасувати</button></div>": "\">Cancel</button></div>", "<section class=\"pb-lock\"><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Розклад <em>майстрині</em></div>": "<section class=\"pb-lock\"><div class=\"pb-h\" role=\"heading\" aria-level=\"3\">Artist <em>schedule</em></div>", "<p style=\"color:var(--pb-muted);margin:0\">Оберіть себе і введіть свій PIN-код.</p>": "<p style=\"color:var(--pb-muted);margin:0\">Choose your name and enter your PIN.</p>", "\" inputmode=\"numeric\" maxlength=\"1\" autocomplete=\"off\" aria-label=\"Цифра ": "\" inputmode=\"numeric\" maxlength=\"1\" autocomplete=\"off\" aria-label=\"Digit ", "Перевіряємо…": "Checking…", "Відкрити розклад": "Open schedule", "<p style=\"color:var(--pb-muted);font-size:.84rem;margin:14px 0 0\">У демо-режимі підходить будь-який PIN.</p>": "<p style=\"color:var(--pb-muted);font-size:.84rem;margin:14px 0 0\">In demo mode any PIN works.</p>", ", <em>ваш тиждень</em></div><div style=\"color:var(--pb-muted);font-size:.9rem\">": ", <em>your week</em></div><div style=\"color:var(--pb-muted);font-size:.9rem\">", " · записів: ": " · bookings: ", " · оновлюємо…": " · updating…", " aria-label=\"Попередній тиждень\">←</button>": " aria-label=\"Previous week\">←</button>", "<button class=\"pb-btn is-ghost\" type=\"button\" data-week=\"0\">Сьогодні</button><button class=\"pb-btn is-ghost\" type=\"button\" data-week=\"1\" aria-label=\"Наступний тиждень\">→</button>": "<button class=\"pb-btn is-ghost\" type=\"button\" data-week=\"0\">Today</button><button class=\"pb-btn is-ghost\" type=\"button\" data-week=\"1\" aria-label=\"Next week\">→</button>", "<button class=\"pb-btn is-ghost\" type=\"button\" data-act=\"pin\">Змінити PIN</button><button class=\"pb-btn is-ghost\" type=\"button\" data-act=\"logout\">Вийти</button></div></div>": "<button class=\"pb-btn is-ghost\" type=\"button\" data-act=\"pin\">Change PIN</button><button class=\"pb-btn is-ghost\" type=\"button\" data-act=\"logout\">Log out</button></div></div>", "<div class=\"pb-legend\"><span><i style=\"background:var(--pb-grad)\"></i>Онлайн-запис клієнтки</span><span><i style=\"background:#F3D2DC;border:1px solid rgba(140,47,75,.3)\"></i>Записала майстриня</span><span><i style=\"background:#E9DCDF\"></i>Закритий час</span><span>Натисніть на вільну клітинку, щоб додати запис</span></div>": "<div class=\"pb-legend\"><span><i style=\"background:var(--pb-grad)\"></i>Online booking</span><span><i style=\"background:#F3D2DC;border:1px solid rgba(140,47,75,.3)\"></i>Added by artist</span><span><i style=\"background:#E9DCDF\"></i>Blocked time</span><span>Click a free cell to add a booking</span></div>", "Закритий час": "Blocked time", "Клієнтка": "Client", "Перевірте номер телефону: потрібно щонайменше 9 цифр.": "Check the phone number: it needs at least 9 digits.", "Цей час щойно зайняли. Оберіть інший.": "Someone just took this time. Please pick another.", "Готово! ": "Done! ", " чекає на вас ": " is expecting you on ", " о ": " at ", " (демо, запис не збережено)": " (demo, not saved)", "Саме зараз хтось записується. Спробуйте ще раз за мить.": "Someone is booking right now. Try again in a moment.", "Не вдалося записатися. Спробуйте ще раз або залиште заявку у формі нижче.": "Couldn't book. Please try again.", "Запис скасовано.": "Booking cancelled.", "Не вдалося скасувати. Зателефонуйте в салон.": "Couldn't cancel. Please call the studio.", "Немає зв'язку. Спробуйте ще раз.": "No connection. Please try again.", "Неправильний PIN. Спробуйте ще раз.": "Wrong PIN. Try again.", "Не вдалося завантажити розклад.": "Couldn't load the schedule.", "Немає зв'язку з розкладом. Спробуйте ще раз.": "Can't reach the schedule. Try again.", "Введіть 4 цифри.": "Enter 4 digits.", "<div class=\"pb-h\">Новий запис</div><p style=\"margin:-6px 0 14px;color:#7A5562\">": "<div class=\"pb-h\">New booking</div><p style=\"margin:-6px 0 14px;color:#7A5562\">", "<div class=\"pb-seg\" role=\"group\"><button type=\"button\" class=\"pb-chip\" data-kind=\"staff\" aria-pressed=\"true\">Клієнтка</button><button type=\"button\" class=\"pb-chip\" data-kind=\"block\" aria-pressed=\"false\">Закрити час</button></div>": "<div class=\"pb-seg\" role=\"group\"><button type=\"button\" class=\"pb-chip\" data-kind=\"staff\" aria-pressed=\"true\">Client</button><button type=\"button\" class=\"pb-chip\" data-kind=\"block\" aria-pressed=\"false\">Block time</button></div>", "<div class=\"pb-field\"><label for=\"pa-name\">Ім'я клієнтки</label><input id=\"pa-name\" maxlength=\"60\"></div>": "<div class=\"pb-field\"><label for=\"pa-name\">Client name</label><input id=\"pa-name\" maxlength=\"60\"></div>", "<div class=\"pb-field\"><label for=\"pa-phone\">Телефон</label><input id=\"pa-phone\" type=\"tel\" maxlength=\"20\"></div>": "<div class=\"pb-field\"><label for=\"pa-phone\">Phone</label><input id=\"pa-phone\" type=\"tel\" maxlength=\"20\"></div>", "<div class=\"pb-field\"><label for=\"pa-svc\">Послуга</label><select id=\"pa-svc\">": "<div class=\"pb-field\"><label for=\"pa-svc\">Service</label><select id=\"pa-svc\">", "<option value=\"\">Інше</option></select></div></div>": "<option value=\"\">Other</option></select></div></div>", "<div class=\"pb-bf\" hidden><div class=\"pb-field\"><label for=\"pa-note\">Причина</label><input id=\"pa-note\" maxlength=\"40\" value=\"Перерва\"></div></div>": "<div class=\"pb-bf\" hidden><div class=\"pb-field\"><label for=\"pa-note\">Reason</label><input id=\"pa-note\" maxlength=\"40\" value=\"Break\"></div></div>", "<div class=\"pb-row2\"><div class=\"pb-field\"><label for=\"pa-start\">Початок</label><select id=\"pa-start\">": "<div class=\"pb-row2\"><div class=\"pb-field\"><label for=\"pa-start\">Start</label><select id=\"pa-start\">", "<div class=\"pb-field\"><label for=\"pa-dur\">Тривалість</label><select id=\"pa-dur\">": "<div class=\"pb-field\"><label for=\"pa-dur\">Duration</label><select id=\"pa-dur\">", "<div class=\"pb-err\"></div><div class=\"pb-actions\"><button type=\"button\" class=\"pb-btn is-ghost\" data-close>Скасувати</button><button type=\"submit\" class=\"pb-btn\">Зберегти</button></div></form>": "<div class=\"pb-err\"></div><div class=\"pb-actions\"><button type=\"button\" class=\"pb-btn is-ghost\" data-close>Cancel</button><button type=\"submit\" class=\"pb-btn\">Save</button></div></form>", "Запис має закінчитися до 20:00.": "The booking must end by 20:00.", "Зберігаємо…": "Saving…", "Зберегти": "Save", "Цей час перетинається з іншим записом.": "This time overlaps another booking.", "PIN більше не дійсний. Увійдіть знову.": "Your PIN is no longer valid. Log in again.", "Не вдалося зберегти.": "Couldn't save.", "<span>Дата</span><b>": "<span>Date</span><b>", "</b><span>Час</span><b>": "</b><span>Time</span><b>", "<span>Послуга</span><b>": "<span>Service</span><b>", "Інше": "Other", "</b><span>Телефон</span><b>": "</b><span>Phone</span><b>", "<span>Побажання</span><b>": "<span>Notes</span><b>", "<span>Джерело</span><b>": "<span>Source</span><b>", "Онлайн-запис": "Online booking", "Записала майстриня": "Added by artist", "<span>Причина</span><b>": "<span>Reason</span><b>", "Відкрити час": "Unblock time", "Скасувати запис": "Cancel booking", "</button><button type=\"button\" class=\"pb-btn is-ghost\" data-close>Закрити</button></div>": "</button><button type=\"button\" class=\"pb-btn is-ghost\" data-close>Close</button></div>", "Натисніть ще раз, щоб підтвердити": "Click again to confirm", "<div class=\"pb-msg is-err\">Не вдалося видалити.</div>": "<div class=\"pb-msg is-err\">Couldn't delete.</div>", "<div class=\"pb-msg is-err\">Немає зв'язку.</div>": "<div class=\"pb-msg is-err\">No connection.</div>", "<div class=\"pb-h\">Новий PIN</div><form class=\"pb-cpform\"><div class=\"pb-field\"><label for=\"pa-cp\">4 цифри</label><input id=\"pa-cp\" inputmode=\"numeric\" maxlength=\"4\" autocomplete=\"off\"></div><div class=\"pb-err\"></div>": "<div class=\"pb-h\">New PIN</div><form class=\"pb-cpform\"><div class=\"pb-field\"><label for=\"pa-cp\">4 digits</label><input id=\"pa-cp\" inputmode=\"numeric\" maxlength=\"4\" autocomplete=\"off\"></div><div class=\"pb-err\"></div>", "<div class=\"pb-actions\"><button type=\"button\" class=\"pb-btn is-ghost\" data-close>Скасувати</button><button class=\"pb-btn\" type=\"submit\">Зберегти</button></div></form>": "<div class=\"pb-actions\"><button type=\"button\" class=\"pb-btn is-ghost\" data-close>Cancel</button><button class=\"pb-btn\" type=\"submit\">Save</button></div></form>", "<div class=\"pb-msg is-err\">PIN має складатися з 4 цифр.</div>": "<div class=\"pb-msg is-err\">The PIN must be 4 digits.</div>", "<div class=\"pb-msg is-ok\">PIN змінено.</div>": "<div class=\"pb-msg is-ok\">PIN changed.</div>", "<div class=\"pb-msg is-err\">Не вдалося змінити PIN.</div>": "<div class=\"pb-msg is-err\">Couldn't change the PIN.</div>", "Точно скасувати?": "Cancel for sure?", "від ": "from ", "Вкажіть, будь ласка, ім'я.": "Please enter your name.", "Вкажіть ім'я клієнтки.": "Enter the client's name."};
+function t(s) { return LANG === 'en' && EN[s] != null ? EN[s] : s; }
+
 /* ---------- salon data ---------- */
 var MASTERS = [
-  { id: 'anna', name: 'Анна', role: 'Топ-колористка' },
-  { id: 'darina', name: 'Дарина', role: 'Стилістка, укладки' },
-  { id: 'maria', name: 'Марія', role: 'Майстриня манікюру' },
-  { id: 'olena', name: 'Олена', role: 'Майстриня педикюру' }];
-var CATS = [{ id: 'hair', name: 'Волосся' }, { id: 'nails', name: 'Манікюр' }, { id: 'pedi', name: 'Педикюр' }];
+  { id: 'anna', name: t('Анна'), role: t('Топ-колористка') },
+  { id: 'darina', name: t('Дарина'), role: t('Стилістка, укладки') },
+  { id: 'maria', name: t('Марія'), role: t('Майстриня манікюру') },
+  { id: 'olena', name: t('Олена'), role: t('Майстриня педикюру') }];
+var CATS = [{ id: 'hair', name: t('Волосся') }, { id: 'nails', name: t('Манікюр') }, { id: 'pedi', name: t('Педикюр') }];
 var SERVICES = [
-  { id: 'cut', cat: 'hair', name: 'Жіноча стрижка', price: 800, dur: 60, m: ['darina', 'anna'] },
-  { id: 'tone', cat: 'hair', name: 'Фарбування в один тон', price: 1800, dur: 120, m: ['anna'] },
-  { id: 'airtouch', cat: 'hair', name: 'AirTouch / балаяж', price: 3500, dur: 240, m: ['anna'] },
-  { id: 'style', cat: 'hair', name: 'Укладка, локони', price: 600, dur: 60, m: ['darina'] },
-  { id: 'care', cat: 'hair', name: 'Догляд і відновлення', price: 900, dur: 90, m: ['anna', 'darina'] },
-  { id: 'event', cat: 'hair', name: 'Зачіска на подію', price: 1200, dur: 90, m: ['darina'] },
-  { id: 'mani', cat: 'nails', name: 'Манікюр з покриттям', price: 650, dur: 90, m: ['maria'] },
-  { id: 'french', cat: 'nails', name: 'Френч / омбре', price: 800, dur: 120, m: ['maria'] },
-  { id: 'ext', cat: 'nails', name: 'Нарощування', price: 1100, dur: 150, m: ['maria'] },
-  { id: 'mani0', cat: 'nails', name: 'Манікюр без покриття', price: 400, dur: 60, m: ['maria', 'olena'] },
-  { id: 'remove', cat: 'nails', name: 'Зняття та укріплення', price: 250, dur: 30, m: ['maria'] },
-  { id: 'smart', cat: 'pedi', name: 'Педикюр SMART', price: 850, dur: 90, m: ['olena'] },
-  { id: 'pedi', cat: 'pedi', name: 'Педикюр з покриттям', price: 1000, dur: 120, m: ['olena'] },
-  { id: 'express', cat: 'pedi', name: 'Експрес-покриття', price: 500, dur: 60, m: ['olena', 'maria'] },
-  { id: 'spa', cat: 'pedi', name: 'SPA-догляд для стоп', price: 450, dur: 60, m: ['olena'] },
-  { id: 'menpedi', cat: 'pedi', name: 'Чоловічий педикюр', price: 900, dur: 90, m: ['olena'] },
-  { id: 'cracks', cat: 'pedi', name: 'Обробка тріщин', price: 300, dur: 60, m: ['olena'] }];
+  { id: 'cut', cat: 'hair', name: t('Жіноча стрижка'), price: 800, dur: 60, m: ['darina', 'anna'] },
+  { id: 'tone', cat: 'hair', name: t('Фарбування в один тон'), price: 1800, dur: 120, m: ['anna'] },
+  { id: 'airtouch', cat: 'hair', name: t('AirTouch / балаяж'), price: 3500, dur: 240, m: ['anna'] },
+  { id: 'style', cat: 'hair', name: t('Укладка, локони'), price: 600, dur: 60, m: ['darina'] },
+  { id: 'care', cat: 'hair', name: t('Догляд і відновлення'), price: 900, dur: 90, m: ['anna', 'darina'] },
+  { id: 'event', cat: 'hair', name: t('Зачіска на подію'), price: 1200, dur: 90, m: ['darina'] },
+  { id: 'mani', cat: 'nails', name: t('Манікюр з покриттям'), price: 650, dur: 90, m: ['maria'] },
+  { id: 'french', cat: 'nails', name: t('Френч / омбре'), price: 800, dur: 120, m: ['maria'] },
+  { id: 'ext', cat: 'nails', name: t('Нарощування'), price: 1100, dur: 150, m: ['maria'] },
+  { id: 'mani0', cat: 'nails', name: t('Манікюр без покриття'), price: 400, dur: 60, m: ['maria', 'olena'] },
+  { id: 'remove', cat: 'nails', name: t('Зняття та укріплення'), price: 250, dur: 30, m: ['maria'] },
+  { id: 'smart', cat: 'pedi', name: t('Педикюр SMART'), price: 850, dur: 90, m: ['olena'] },
+  { id: 'pedi', cat: 'pedi', name: t('Педикюр з покриттям'), price: 1000, dur: 120, m: ['olena'] },
+  { id: 'express', cat: 'pedi', name: t('Експрес-покриття'), price: 500, dur: 60, m: ['olena', 'maria'] },
+  { id: 'spa', cat: 'pedi', name: t('SPA-догляд для стоп'), price: 450, dur: 60, m: ['olena'] },
+  { id: 'menpedi', cat: 'pedi', name: t('Чоловічий педикюр'), price: 900, dur: 90, m: ['olena'] },
+  { id: 'cracks', cat: 'pedi', name: t('Обробка тріщин'), price: 300, dur: 60, m: ['olena'] }];
 var OPEN = 600, CLOSE = 1200, STEP = 30, DAYS_AHEAD = 21, ROW = 30;
-var DOW = ['Нд', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-var MON = ['січня', 'лютого', 'березня', 'квітня', 'травня', 'червня', 'липня', 'серпня', 'вересня', 'жовтня', 'листопада', 'грудня'];
+var DOW = [t('Нд'), t('Пн'), t('Вт'), t('Ср'), t('Чт'), t('Пт'), t('Сб')];
+var MON = [t('січня'), t('лютого'), t('березня'), t('квітня'), t('травня'), t('червня'), t('липня'), t('серпня'), t('вересня'), t('жовтня'), t('листопада'), t('грудня')];
 
 /* ---------- utils ---------- */
 function $(s) { return root.querySelector(s) || document.querySelector(s); }
@@ -177,11 +182,12 @@ function today() { return ymd(new Date()); }
 function nowMin() { var d = new Date(); return d.getHours() * 60 + d.getMinutes(); }
 function isClosed(s) { return parse(s).getDay() === 0; }
 function longDate(s) { var d = parse(s); return DOW[d.getDay()] + ', ' + d.getDate() + ' ' + MON[d.getMonth()]; }
-function durTxt(m) { return m >= 60 ? (Math.floor(m / 60) + ' год' + (m % 60 ? ' ' + m % 60 + ' хв' : '')) : m + ' хв'; }
+function durTxt(m) { return m >= 60 ? (Math.floor(m / 60) + t(' год') + (m % 60 ? ' ' + m % 60 + t(' хв') : '')) : m + t(' хв'); }
 function svc(id) { return SERVICES.find(function (s) { return s.id === id; }); }
 function master(id) { return MASTERS.find(function (m) { return m.id === id; }); }
 function monday(d) { var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); return addDays(x, -((x.getDay() + 6) % 7)); }
-function price(n) { return n.toLocaleString('uk-UA'); }
+function price(n) { return n.toLocaleString(LANG === 'en' ? 'en-US' : 'uk-UA'); }
+function money(n) { return LANG === 'en' ? 'from ₴' + price(n) : t('від ') + price(n) + ' ₴'; }
 function store(k, v) { try { if (v === undefined) return JSON.parse(localStorage.getItem(k) || 'null'); localStorage.setItem(k, JSON.stringify(v)); } catch (e) { return null; } }
 
 /* ---------- API ---------- */
@@ -204,7 +210,7 @@ var S = {
 var demo = [];
 function demoSeed() {
   var plan = [[0, 'anna', 660, 120], [0, 'maria', 720, 90], [1, 'darina', 600, 60], [1, 'olena', 780, 120], [1, 'anna', 840, 240], [2, 'maria', 600, 150], [2, 'darina', 900, 90], [3, 'olena', 660, 60], [3, 'anna', 720, 120], [4, 'maria', 840, 90]];
-  plan.forEach(function (p, i) { var d = ymd(addDays(new Date(), p[0])); if (!isClosed(d)) demo.push({ id: 'demo' + i, master: p[1], date: d, start: p[2], dur: p[3], kind: 'client', service: '', name: 'Клієнтка (приклад)', phone: '+380 00 000 00 00', note: '' }); });
+  plan.forEach(function (p, i) { var d = ymd(addDays(new Date(), p[0])); if (!isClosed(d)) demo.push({ id: 'demo' + i, master: p[1], date: d, start: p[2], dur: p[3], kind: 'client', service: '', name: t('Клієнтка (приклад)'), phone: '+380 00 000 00 00', note: '' }); });
 }
 
 function refresh() {
@@ -241,13 +247,13 @@ function slotsFor(date) {
 function render() {
   keepDraft();
   var note = '';
-  if (!LIVE) note = '<b>Демо-режим.</b> Календар ще не підключено до таблиці салону, тому записи не зберігаються.';
-  else if (S.error) note = '<b>Немає зв\'язку з розкладом.</b> Перевірте інтернет і оновіть сторінку або залиште заявку у формі нижче.';
-  else if (!S.loaded) note = 'Завантажуємо вільні віконця…';
+  if (!LIVE) note = t('<b>Демо-режим.</b> Календар ще не підключено до таблиці салону, тому записи не зберігаються.');
+  else if (S.error) note = t('<b>Немає зв\'язку з розкладом.</b> Перевірте інтернет і оновіть сторінку або залиште заявку у формі нижче.');
+  else if (!S.loaded) note = t('Завантажуємо вільні віконця…');
   root.innerHTML =
-    '<div class="pb-top"><div class="pb-mode" role="group" aria-label="Режим">' +
-    '<button type="button" data-mode="client" aria-pressed="' + (S.mode === 'client') + '">Я клієнтка</button>' +
-    '<button type="button" data-mode="master" aria-pressed="' + (S.mode === 'master') + '">Я майстриня</button></div></div>' +
+    t('<div class="pb-top"><div class="pb-mode" role="group" aria-label="Режим">') +
+    '<button type="button" data-mode="client" aria-pressed="' + (S.mode === 'client') + t('">Я клієнтка</button>') +
+    '<button type="button" data-mode="master" aria-pressed="' + (S.mode === 'master') + t('">Я майстриня</button></div></div>') +
     (note ? '<div class="pb-note" role="status">' + note + '</div>' : '') +
     '<div class="pb-body"></div>';
   var body = root.querySelector('.pb-body');
@@ -262,46 +268,46 @@ function clientHTML() {
   for (var i = 0; i < DAYS_AHEAD; i++) dates.push(ymd(addDays(new Date(), i)));
   if (sv && S.date && S.start != null && !slotsFor(S.date).some(function (x) { return x[0] === S.start; })) S.start = null;
   var slots = sv && S.date ? slotsFor(S.date) : [], ms = sv ? sv.m : [];
-  var parts = [['Ранок', OPEN, 720], ['День', 720, 960], ['Вечір', 960, CLOSE]];
+  var parts = [[t('Ранок'), OPEN, 720], [t('День'), 720, 960], [t('Вечір'), 960, CLOSE]];
   var assigned = S.start != null ? (slots.find(function (x) { return x[0] === S.start; }) || [])[1] : null;
   var chosen = S.master !== 'any' ? S.master : assigned;
   var mine = S.mine.filter(function (x) { return x.date >= today(); }).sort(function (a, b) { return (a.date + hm(a.start)).localeCompare(b.date + hm(b.start)); });
   var ready = sv && S.date && S.start != null && S.loaded && !S.error && !S.sending;
   var h = '<div class="pb-grid"><div class="pb-steps">';
-  h += '<section class="pb-step"><div class="pb-step-head"><span class="pb-num">i.</span><div class="pb-h" role="heading" aria-level="3">Послуга</div></div>' +
-    '<div class="pb-tabs" role="group" aria-label="Категорія">' + CATS.map(function (c) { return '<button type="button" class="pb-chip" data-cat="' + c.id + '" aria-pressed="' + (S.cat === c.id) + '">' + c.name + '</button>'; }).join('') + '</div>' +
-    '<div class="pb-svc">' + list.map(function (s) { return '<button type="button" data-svc="' + s.id + '" aria-pressed="' + (S.service === s.id) + '"><span class="pb-svc-name">' + esc(s.name) + '</span><span class="pb-svc-meta"><span>' + durTxt(s.dur) + '</span><b>від ' + price(s.price) + ' ₴</b></span></button>'; }).join('') + '</div></section>';
-  h += '<section class="pb-step ' + (sv ? '' : 'is-locked') + '"><div class="pb-step-head"><span class="pb-num">ii.</span><div class="pb-h" role="heading" aria-level="3">Майстриня</div></div>';
+  h += t('<section class="pb-step"><div class="pb-step-head"><span class="pb-num">i.</span><div class="pb-h" role="heading" aria-level="3">Послуга</div></div>') +
+    t('<div class="pb-tabs" role="group" aria-label="Категорія">') + CATS.map(function (c) { return '<button type="button" class="pb-chip" data-cat="' + c.id + '" aria-pressed="' + (S.cat === c.id) + '">' + c.name + '</button>'; }).join('') + '</div>' +
+    '<div class="pb-svc">' + list.map(function (s) { return '<button type="button" data-svc="' + s.id + '" aria-pressed="' + (S.service === s.id) + '"><span class="pb-svc-name">' + esc(s.name) + '</span><span class="pb-svc-meta"><span>' + durTxt(s.dur) + '</span><b>' + money(s.price) + '</b></span></button>'; }).join('') + '</div></section>';
+  h += '<section class="pb-step ' + (sv ? '' : 'is-locked') + t('"><div class="pb-step-head"><span class="pb-num">ii.</span><div class="pb-h" role="heading" aria-level="3">Майстриня</div></div>');
   if (sv) {
-    h += '<div class="pb-masters">' + (ms.length > 1 ? '<button type="button" class="pb-master" data-master="any" aria-pressed="' + (S.master === 'any') + '"><span class="pb-ava is-any">✦</span><span>Будь-яка<small>найближчий вільний час</small></span></button>' : '') +
+    h += '<div class="pb-masters">' + (ms.length > 1 ? '<button type="button" class="pb-master" data-master="any" aria-pressed="' + (S.master === 'any') + t('"><span class="pb-ava is-any">✦</span><span>Будь-яка<small>найближчий вільний час</small></span></button>') : '') +
       ms.map(function (id) { var m = master(id); return '<button type="button" class="pb-master" data-master="' + id + '" aria-pressed="' + (S.master === id || ms.length === 1) + '"><span class="pb-ava">' + m.name[0] + '</span><span>' + m.name + '<small>' + m.role + '</small></span></button>'; }).join('') + '</div>';
-  } else h += '<div class="pb-empty">Спершу оберіть послугу.</div>';
-  h += '</section><section class="pb-step ' + (sv ? '' : 'is-locked') + '"><div class="pb-step-head"><span class="pb-num">iii.</span><div class="pb-h" role="heading" aria-level="3">Дата і час</div></div>';
+  } else h += t('<div class="pb-empty">Спершу оберіть послугу.</div>');
+  h += '</section><section class="pb-step ' + (sv ? '' : 'is-locked') + t('"><div class="pb-step-head"><span class="pb-num">iii.</span><div class="pb-h" role="heading" aria-level="3">Дата і час</div></div>');
   if (sv) {
-    h += '<div class="pb-dates" role="group" aria-label="Дата" data-lenis-prevent>' + dates.map(function (d) {
+    h += t('<div class="pb-dates" role="group" aria-label="Дата" data-lenis-prevent>') + dates.map(function (d) {
       var dt = parse(d), closed = isClosed(d), has = !closed && slotsFor(d).length > 0;
-      return '<button type="button" class="pb-date" data-date="' + d + '" aria-pressed="' + (S.date === d) + '" ' + (closed || !has ? 'disabled' : '') + ' aria-label="' + longDate(d) + (closed ? ', вихідний' : has ? '' : ', немає вільного часу') + '"><small>' + DOW[dt.getDay()] + '</small><b>' + dt.getDate() + '</b><span class="pb-dot ' + (has ? '' : 'is-none') + '"></span></button>';
+      return '<button type="button" class="pb-date" data-date="' + d + '" aria-pressed="' + (S.date === d) + '" ' + (closed || !has ? 'disabled' : '') + ' aria-label="' + longDate(d) + (closed ? t(', вихідний') : has ? '' : t(', немає вільного часу')) + '"><small>' + DOW[dt.getDay()] + '</small><b>' + dt.getDate() + '</b><span class="pb-dot ' + (has ? '' : 'is-none') + '"></span></button>';
     }).join('') + '</div>';
     if (S.date) {
       h += slots.length ? parts.map(function (p) {
         var xs = slots.filter(function (x) { return x[0] >= p[1] && x[0] < p[2]; });
         return xs.length ? '<p class="pb-part">' + p[0] + '</p><div class="pb-times">' + xs.map(function (x) { return '<button type="button" class="pb-time" data-start="' + x[0] + '" aria-pressed="' + (S.start === x[0]) + '">' + hm(x[0]) + '</button>'; }).join('') + '</div>' : '';
-      }).join('') : '<div class="pb-empty">На цей день вільних віконець немає. Оберіть іншу дату.</div>';
-    } else h += '<div class="pb-empty">Оберіть дату. Зелена крапка означає, що є вільний час. Неділя вихідний.</div>';
-  } else h += '<div class="pb-empty">Спершу оберіть послугу.</div>';
+      }).join('') : t('<div class="pb-empty">На цей день вільних віконець немає. Оберіть іншу дату.</div>');
+    } else h += t('<div class="pb-empty">Оберіть дату. Зелена крапка означає, що є вільний час. Неділя вихідний.</div>');
+  } else h += t('<div class="pb-empty">Спершу оберіть послугу.</div>');
   h += '</section></div>';
-  h += '<aside class="pb-summary"><div class="pb-h" role="heading" aria-level="3">Ваш запис</div><div class="pb-rows">' +
-    row('Послуга', sv ? sv.name : null) + row('Майстриня', chosen ? master(chosen).name : (sv && S.master === 'any' ? 'будь-яка' : null)) +
-    row('Дата', S.date ? longDate(S.date) : null) + row('Час', S.start != null && sv ? hm(S.start) + ' – ' + hm(S.start + sv.dur) : null) +
-    row('Вартість', sv ? 'від ' + price(sv.price) + ' ₴' : null) + '</div>' +
+  h += t('<aside class="pb-summary"><div class="pb-h" role="heading" aria-level="3">Ваш запис</div><div class="pb-rows">') +
+    row(t('Послуга'), sv ? sv.name : null) + row(t('Майстриня'), chosen ? master(chosen).name : (sv && S.master === 'any' ? t('будь-яка') : null)) +
+    row(t('Дата'), S.date ? longDate(S.date) : null) + row(t('Час'), S.start != null && sv ? hm(S.start) + ' – ' + hm(S.start + sv.dur) : null) +
+    row(t('Вартість'), sv ? money(sv.price) : null) + '</div>' +
     '<form class="pb-form" novalidate>' +
-    '<div class="pb-field"><label for="pb-name">Ваше ім\'я</label><input id="pb-name" autocomplete="given-name" maxlength="60" value="' + esc(S.draft.name) + '"></div>' +
-    '<div class="pb-field"><label for="pb-phone">Телефон</label><input id="pb-phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="+380" value="' + esc(S.draft.phone) + '"></div>' +
-    '<div class="pb-field"><label for="pb-note">Побажання (необов\'язково)</label><textarea id="pb-note" maxlength="300">' + esc(S.draft.note) + '</textarea></div>' +
-    '<button class="pb-btn" type="submit" ' + (ready ? '' : 'disabled') + '>' + (S.sending ? 'Записуємо…' : 'Записатися') + '</button></form>' +
+    t('<div class="pb-field"><label for="pb-name">Ваше ім\'я</label><input id="pb-name" autocomplete="given-name" maxlength="60" value="') + esc(S.draft.name) + '"></div>' +
+    t('<div class="pb-field"><label for="pb-phone">Телефон</label><input id="pb-phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="+380" value="') + esc(S.draft.phone) + '"></div>' +
+    t('<div class="pb-field"><label for="pb-note">Побажання (необов\'язково)</label><textarea id="pb-note" maxlength="300">') + esc(S.draft.note) + '</textarea></div>' +
+    '<button class="pb-btn" type="submit" ' + (ready ? '' : 'disabled') + '>' + (S.sending ? t('Записуємо…') : t('Записатися')) + '</button></form>' +
     (S.msg ? '<div class="pb-msg ' + (S.msg.ok ? 'is-ok' : 'is-err') + '" role="status">' + esc(S.msg.text) + '</div>' : '') +
-    (mine.length ? '<div class="pb-mine"><div class="pb-h" role="heading" aria-level="4">Мої записи</div>' + mine.map(function (x) {
-      return '<div class="pb-mine-item"><div><b>' + esc((svc(x.service) || {}).name || 'Запис') + '</b>' + longDate(x.date) + ', ' + hm(x.start) + ' · ' + esc((master(x.master) || {}).name || '') + '</div><button type="button" class="pb-link" data-cancel="' + esc(x.id) + '">Скасувати</button></div>';
+    (mine.length ? t('<div class="pb-mine"><div class="pb-h" role="heading" aria-level="4">Мої записи</div>') + mine.map(function (x) {
+      return '<div class="pb-mine-item"><div><b>' + esc((svc(x.service) || {}).name || t('Запис')) + '</b>' + longDate(x.date) + ', ' + hm(x.start) + ' · ' + esc((master(x.master) || {}).name || '') + '</div><button type="button" class="pb-link" data-cancel="' + esc(x.id) + t('">Скасувати</button></div>');
     }).join('') + '</div>' : '') + '</aside></div>';
   return h;
 }
@@ -309,13 +315,13 @@ function clientHTML() {
 function masterHTML() {
   var st = S.staff;
   if (!st.who) {
-    return '<section class="pb-lock"><div class="pb-h" role="heading" aria-level="3">Розклад <em>майстрині</em></div>' +
-      '<p style="color:var(--pb-muted);margin:0">Оберіть себе і введіть свій PIN-код.</p>' +
+    return t('<section class="pb-lock"><div class="pb-h" role="heading" aria-level="3">Розклад <em>майстрині</em></div>') +
+      t('<p style="color:var(--pb-muted);margin:0">Оберіть себе і введіть свій PIN-код.</p>') +
       '<div class="pb-masters">' + MASTERS.map(function (m) { return '<button type="button" class="pb-master" data-pinfor="' + m.id + '" aria-pressed="' + (st.pinFor === m.id) + '"><span class="pb-ava">' + m.name[0] + '</span><span>' + m.name + '</span></button>'; }).join('') + '</div>' +
-      '<form class="pb-pinform"><div class="pb-pin">' + [0, 1, 2, 3].map(function (i) { return '<input id="pb-pin' + i + '" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="Цифра ' + (i + 1) + '">'; }).join('') + '</div>' +
-      '<button class="pb-btn is-dark" type="submit" ' + (st.loading ? 'disabled' : '') + '>' + (st.loading ? 'Перевіряємо…' : 'Відкрити розклад') + '</button></form>' +
+      '<form class="pb-pinform"><div class="pb-pin">' + [0, 1, 2, 3].map(function (i) { return '<input id="pb-pin' + i + t('" inputmode="numeric" maxlength="1" autocomplete="off" aria-label="Цифра ') + (i + 1) + '">'; }).join('') + '</div>' +
+      '<button class="pb-btn is-dark" type="submit" ' + (st.loading ? 'disabled' : '') + '>' + (st.loading ? t('Перевіряємо…') : t('Відкрити розклад')) + '</button></form>' +
       (st.err ? '<div class="pb-msg is-err" role="alert">' + esc(st.err) + '</div>' : '') +
-      (!LIVE ? '<p style="color:var(--pb-muted);font-size:.84rem;margin:14px 0 0">У демо-режимі підходить будь-який PIN.</p>' : '') + '</section>';
+      (!LIVE ? t('<p style="color:var(--pb-muted);font-size:.84rem;margin:14px 0 0">У демо-режимі підходить будь-який PIN.</p>') : '') + '</section>';
   }
   var m = master(st.who), ws = parse(st.week), days = [];
   for (var i = 0; i < 7; i++) days.push(ymd(addDays(ws, i)));
@@ -323,12 +329,12 @@ function masterHTML() {
   var mine = st.rows.filter(function (b) { return b.date >= days[0] && b.date <= days[6]; });
   var count = mine.filter(function (b) { return b.kind !== 'block'; }).length;
   var canBack = st.week > ymd(monday(new Date()));
-  var h = '<div class="pb-bar ' + (st.loading ? 'pb-loading' : '') + '"><div><div class="pb-h" role="heading" aria-level="3">' + m.name + ', <em>ваш тиждень</em></div><div style="color:var(--pb-muted);font-size:.9rem">' +
-    parse(days[0]).getDate() + ' ' + MON[parse(days[0]).getMonth()] + ' – ' + parse(days[6]).getDate() + ' ' + MON[parse(days[6]).getMonth()] + ' · записів: ' + count + (st.loading ? ' · оновлюємо…' : '') + '</div></div>' +
-    '<div class="pb-nav"><button class="pb-btn is-ghost" type="button" data-week="-1" ' + (canBack ? '' : 'disabled') + ' aria-label="Попередній тиждень">←</button>' +
-    '<button class="pb-btn is-ghost" type="button" data-week="0">Сьогодні</button><button class="pb-btn is-ghost" type="button" data-week="1" aria-label="Наступний тиждень">→</button>' +
-    '<button class="pb-btn is-ghost" type="button" data-act="pin">Змінити PIN</button><button class="pb-btn is-ghost" type="button" data-act="logout">Вийти</button></div></div>' +
-    '<div class="pb-legend"><span><i style="background:var(--pb-grad)"></i>Онлайн-запис клієнтки</span><span><i style="background:#F3D2DC;border:1px solid rgba(140,47,75,.3)"></i>Записала майстриня</span><span><i style="background:#E9DCDF"></i>Закритий час</span><span>Натисніть на вільну клітинку, щоб додати запис</span></div>' +
+  var h = '<div class="pb-bar ' + (st.loading ? 'pb-loading' : '') + '"><div><div class="pb-h" role="heading" aria-level="3">' + m.name + t(', <em>ваш тиждень</em></div><div style="color:var(--pb-muted);font-size:.9rem">') +
+    parse(days[0]).getDate() + ' ' + MON[parse(days[0]).getMonth()] + ' – ' + parse(days[6]).getDate() + ' ' + MON[parse(days[6]).getMonth()] + t(' · записів: ') + count + (st.loading ? t(' · оновлюємо…') : '') + '</div></div>' +
+    '<div class="pb-nav"><button class="pb-btn is-ghost" type="button" data-week="-1" ' + (canBack ? '' : 'disabled') + t(' aria-label="Попередній тиждень">←</button>') +
+    t('<button class="pb-btn is-ghost" type="button" data-week="0">Сьогодні</button><button class="pb-btn is-ghost" type="button" data-week="1" aria-label="Наступний тиждень">→</button>') +
+    t('<button class="pb-btn is-ghost" type="button" data-act="pin">Змінити PIN</button><button class="pb-btn is-ghost" type="button" data-act="logout">Вийти</button></div></div>') +
+    t('<div class="pb-legend"><span><i style="background:var(--pb-grad)"></i>Онлайн-запис клієнтки</span><span><i style="background:#F3D2DC;border:1px solid rgba(140,47,75,.3)"></i>Записала майстриня</span><span><i style="background:#E9DCDF"></i>Закритий час</span><span>Натисніть на вільну клітинку, щоб додати запис</span></div>') +
     '<div class="pb-scroll" data-lenis-prevent><div class="pb-cal"><div></div>' +
     days.map(function (d) { var dt = parse(d); return '<div class="pb-ch ' + (d === tdy ? 'is-today' : '') + '">' + DOW[dt.getDay()] + '<b>' + dt.getDate() + '</b></div>'; }).join('') +
     '<div class="pb-tl">';
@@ -337,10 +343,10 @@ function masterHTML() {
   days.forEach(function (d) {
     var closed = isClosed(d);
     h += '<div class="pb-col">';
-    for (var r = 0; r < rows; r++) { var s = OPEN + r * STEP, past = d < tdy || (d === tdy && s + STEP <= nm); h += '<button type="button" class="pb-cell" data-cell="' + d + '|' + s + '" ' + (closed || past ? 'disabled' : '') + ' aria-label="' + longDate(d) + ' ' + hm(s) + (closed ? ', вихідний' : '') + '"></button>'; }
+    for (var r = 0; r < rows; r++) { var s = OPEN + r * STEP, past = d < tdy || (d === tdy && s + STEP <= nm); h += '<button type="button" class="pb-cell" data-cell="' + d + '|' + s + '" ' + (closed || past ? 'disabled' : '') + ' aria-label="' + longDate(d) + ' ' + hm(s) + (closed ? t(', вихідний') : '') + '"></button>'; }
     mine.filter(function (b) { return b.date === d; }).forEach(function (b) {
       var sv = svc(b.service), past = b.date < tdy || (b.date === tdy && b.start + b.dur <= nm);
-      var title = b.kind === 'block' ? (b.note || 'Закритий час') : (b.name || 'Клієнтка');
+      var title = b.kind === 'block' ? (b.note || t('Закритий час')) : (b.name || t('Клієнтка'));
       h += '<button type="button" class="pb-ev is-' + b.kind + ' ' + (past ? 'is-past' : '') + '" data-ev="' + esc(b.id) + '" style="top:' + ((b.start - OPEN) / STEP * ROW + 1) + 'px;height:' + (b.dur / STEP * ROW - 3) + 'px"><b>' + esc(title) + '</b>' + hm(b.start) + '–' + hm(b.start + b.dur) + (sv && b.dur >= 60 ? '<br>' + esc(sv.name) : '') + '</button>';
     });
     h += '</div>';
@@ -357,10 +363,10 @@ function submitClient() {
   keepDraft();
   var sv = svc(S.service); if (!sv || !S.date || S.start == null) return;
   var name = S.draft.name.trim(), phone = S.draft.phone.trim();
-  if (name.length < 2) { S.msg = { ok: false, text: "Вкажіть, будь ласка, ім'я." }; return render(); }
-  if (phone.replace(/\D/g, '').length < 9) { S.msg = { ok: false, text: 'Перевірте номер телефону: потрібно щонайменше 9 цифр.' }; return render(); }
+  if (name.length < 2) { S.msg = { ok: false, text: t("Вкажіть, будь ласка, ім'я.") }; return render(); }
+  if (phone.replace(/\D/g, '').length < 9) { S.msg = { ok: false, text: t('Перевірте номер телефону: потрібно щонайменше 9 цифр.') }; return render(); }
   var slot = slotsFor(S.date).find(function (x) { return x[0] === S.start; });
-  if (!slot) { S.msg = { ok: false, text: 'Цей час щойно зайняли. Оберіть інший.' }; S.start = null; return render(); }
+  if (!slot) { S.msg = { ok: false, text: t('Цей час щойно зайняли. Оберіть інший.') }; S.start = null; return render(); }
   var req = { action: 'book', master: slot[1], date: S.date, start: S.start, dur: sv.dur, service: sv.id, name: name, phone: phone, note: S.draft.note.trim() };
   S.sending = true; S.msg = null; render();
   var done = function (r) {
@@ -368,10 +374,10 @@ function submitClient() {
     if (r.ok) {
       S.mine.push({ id: r.id, token: r.token, service: sv.id, master: req.master, date: req.date, start: req.start });
       store('pinkBookings', S.mine);
-      S.msg = { ok: true, text: 'Готово! ' + master(req.master).name + ' чекає на вас ' + longDate(req.date) + ' о ' + hm(req.start) + '.' + (LIVE ? '' : ' (демо, запис не збережено)') };
+      S.msg = { ok: true, text: t('Готово! ') + master(req.master).name + t(' чекає на вас ') + longDate(req.date) + t(' о ') + hm(req.start) + '.' + (LIVE ? '' : t(' (демо, запис не збережено)')) };
       S.start = null; S.draft.note = '';
     } else {
-      S.msg = { ok: false, text: r.error === 'taken' ? 'Цей час щойно зайняли. Оберіть інший.' : r.error === 'busy' ? 'Саме зараз хтось записується. Спробуйте ще раз за мить.' : 'Не вдалося записатися. Спробуйте ще раз або залиште заявку у формі нижче.' };
+      S.msg = { ok: false, text: r.error === 'taken' ? t('Цей час щойно зайняли. Оберіть інший.') : r.error === 'busy' ? t('Саме зараз хтось записується. Спробуйте ще раз за мить.') : t('Не вдалося записатися. Спробуйте ще раз або залиште заявку у формі нижче.') };
     }
     return refresh();
   };
@@ -386,11 +392,11 @@ function cancelMine(id) {
   var x = S.mine.find(function (m) { return m.id === id; }); if (!x) return;
   var fin = function (ok) {
     S.mine = S.mine.filter(function (m) { return m.id !== id; }); store('pinkBookings', S.mine);
-    S.msg = ok ? { ok: true, text: 'Запис скасовано.' } : { ok: false, text: 'Не вдалося скасувати. Зателефонуйте в салон.' };
+    S.msg = ok ? { ok: true, text: t('Запис скасовано.') } : { ok: false, text: t('Не вдалося скасувати. Зателефонуйте в салон.') };
     return refresh();
   };
   if (!LIVE) { demo = demo.filter(function (d) { return d.id !== id; }); return fin(true); }
-  apiPost({ action: 'cancel', id: id, token: x.token }).then(function (r) { fin(r.ok || r.error === 'not_found'); }).catch(function () { S.msg = { ok: false, text: 'Немає зв\'язку. Спробуйте ще раз.' }; render(); });
+  apiPost({ action: 'cancel', id: id, token: x.token }).then(function (r) { fin(r.ok || r.error === 'not_found'); }).catch(function () { S.msg = { ok: false, text: t('Немає зв\'язку. Спробуйте ще раз.') }; render(); });
 }
 
 /* ---------- master actions ---------- */
@@ -417,14 +423,14 @@ function loadStaff() {
   var st = S.staff, r = weekRange(); st.loading = true; render();
   return staffCall({ action: 'staff_list', from: r.from, to: r.to }).then(function (res) {
     st.loading = false;
-    if (!res.ok) { st.who = null; st.pin = ''; st.err = res.error === 'pin' ? 'Неправильний PIN. Спробуйте ще раз.' : 'Не вдалося завантажити розклад.'; }
+    if (!res.ok) { st.who = null; st.pin = ''; st.err = res.error === 'pin' ? t('Неправильний PIN. Спробуйте ще раз.') : t('Не вдалося завантажити розклад.'); }
     else { st.rows = res.rows; st.err = ''; }
     render();
-  }).catch(function () { st.loading = false; st.err = 'Немає зв\'язку з розкладом. Спробуйте ще раз.'; if (!st.rows.length) st.who = null; render(); });
+  }).catch(function () { st.loading = false; st.err = t('Немає зв\'язку з розкладом. Спробуйте ще раз.'); if (!st.rows.length) st.who = null; render(); });
 }
 function unlock() {
   var st = S.staff, pin = [0, 1, 2, 3].map(function (i) { return root.querySelector('#pb-pin' + i).value; }).join('');
-  if (!/^\d{4}$/.test(pin)) { st.err = 'Введіть 4 цифри.'; return render(); }
+  if (!/^\d{4}$/.test(pin)) { st.err = t('Введіть 4 цифри.'); return render(); }
   st.pin = pin; st.who = st.pinFor; st.err = ''; st.rows = [];
   loadStaff();
 }
@@ -448,16 +454,16 @@ st.textContent += '\n' + css.split('\n').filter(function (l) { return l.indexOf(
 function openAdd(date, start) {
   var who = S.staff.who, list = SERVICES.filter(function (s) { return s.m.indexOf(who) >= 0; }), times = [];
   for (var s = OPEN; s < CLOSE; s += STEP) times.push(s);
-  modal('<div class="pb-h">Новий запис</div><p style="margin:-6px 0 14px;color:#7A5562">' + longDate(date) + '</p>' +
-    '<div class="pb-seg" role="group"><button type="button" class="pb-chip" data-kind="staff" aria-pressed="true">Клієнтка</button><button type="button" class="pb-chip" data-kind="block" aria-pressed="false">Закрити час</button></div>' +
+  modal(t('<div class="pb-h">Новий запис</div><p style="margin:-6px 0 14px;color:#7A5562">') + longDate(date) + '</p>' +
+    t('<div class="pb-seg" role="group"><button type="button" class="pb-chip" data-kind="staff" aria-pressed="true">Клієнтка</button><button type="button" class="pb-chip" data-kind="block" aria-pressed="false">Закрити час</button></div>') +
     '<form class="pb-addform"><div class="pb-cf">' +
-    '<div class="pb-field"><label for="pa-name">Ім\'я клієнтки</label><input id="pa-name" maxlength="60"></div>' +
-    '<div class="pb-field"><label for="pa-phone">Телефон</label><input id="pa-phone" type="tel" maxlength="20"></div>' +
-    '<div class="pb-field"><label for="pa-svc">Послуга</label><select id="pa-svc">' + list.map(function (s) { return '<option value="' + s.id + '">' + esc(s.name) + ' · ' + durTxt(s.dur) + '</option>'; }).join('') + '<option value="">Інше</option></select></div></div>' +
-    '<div class="pb-bf" hidden><div class="pb-field"><label for="pa-note">Причина</label><input id="pa-note" maxlength="40" value="Перерва"></div></div>' +
-    '<div class="pb-row2"><div class="pb-field"><label for="pa-start">Початок</label><select id="pa-start">' + times.map(function (t) { return '<option value="' + t + '"' + (t === start ? ' selected' : '') + '>' + hm(t) + '</option>'; }).join('') + '</select></div>' +
-    '<div class="pb-field"><label for="pa-dur">Тривалість</label><select id="pa-dur">' + [30, 60, 90, 120, 150, 180, 240, 300].map(function (d) { return '<option value="' + d + '">' + durTxt(d) + '</option>'; }).join('') + '</select></div></div>' +
-    '<div class="pb-err"></div><div class="pb-actions"><button type="button" class="pb-btn is-ghost" data-close>Скасувати</button><button type="submit" class="pb-btn">Зберегти</button></div></form>');
+    t('<div class="pb-field"><label for="pa-name">Ім\'я клієнтки</label><input id="pa-name" maxlength="60"></div>') +
+    t('<div class="pb-field"><label for="pa-phone">Телефон</label><input id="pa-phone" type="tel" maxlength="20"></div>') +
+    t('<div class="pb-field"><label for="pa-svc">Послуга</label><select id="pa-svc">') + list.map(function (s) { return '<option value="' + s.id + '">' + esc(s.name) + ' · ' + durTxt(s.dur) + '</option>'; }).join('') + t('<option value="">Інше</option></select></div></div>') +
+    t('<div class="pb-bf" hidden><div class="pb-field"><label for="pa-note">Причина</label><input id="pa-note" maxlength="40" value="Перерва"></div></div>') +
+    t('<div class="pb-row2"><div class="pb-field"><label for="pa-start">Початок</label><select id="pa-start">') + times.map(function (t) { return '<option value="' + t + '"' + (t === start ? ' selected' : '') + '>' + hm(t) + '</option>'; }).join('') + '</select></div>' +
+    t('<div class="pb-field"><label for="pa-dur">Тривалість</label><select id="pa-dur">') + [30, 60, 90, 120, 150, 180, 240, 300].map(function (d) { return '<option value="' + d + '">' + durTxt(d) + '</option>'; }).join('') + '</select></div></div>' +
+    t('<div class="pb-err"></div><div class="pb-actions"><button type="button" class="pb-btn is-ghost" data-close>Скасувати</button><button type="submit" class="pb-btn">Зберегти</button></div></form>'));
   var q = function (s) { return modalRoot.querySelector(s); }, kind = 'staff';
   var syncDur = function () { var s = svc(q('#pa-svc').value); if (s) q('#pa-dur').value = String(s.dur); }; syncDur();
   q('#pa-svc').addEventListener('change', syncDur);
@@ -472,46 +478,46 @@ function openAdd(date, start) {
   q('.pb-addform').addEventListener('submit', function (e) {
     e.preventDefault();
     var st0 = +q('#pa-start').value, du = +q('#pa-dur').value, err = function (t) { q('.pb-err').innerHTML = '<div class="pb-msg is-err">' + esc(t) + '</div>'; };
-    if (st0 + du > CLOSE) return err('Запис має закінчитися до 20:00.');
+    if (st0 + du > CLOSE) return err(t('Запис має закінчитися до 20:00.'));
     var body = { action: 'staff_add', date: date, start: st0, dur: du, kind: kind };
-    if (kind === 'staff') { body.name = q('#pa-name').value.trim(); body.phone = q('#pa-phone').value.trim(); body.service = q('#pa-svc').value; if (!body.name) return err("Вкажіть ім'я клієнтки."); }
-    else body.note = q('#pa-note').value.trim() || 'Закритий час';
-    var btn = q('.pb-addform [type=submit]'); btn.disabled = true; btn.textContent = 'Зберігаємо…';
+    if (kind === 'staff') { body.name = q('#pa-name').value.trim(); body.phone = q('#pa-phone').value.trim(); body.service = q('#pa-svc').value; if (!body.name) return err(t("Вкажіть ім'я клієнтки.")); }
+    else body.note = q('#pa-note').value.trim() || t('Закритий час');
+    var btn = q('.pb-addform [type=submit]'); btn.disabled = true; btn.textContent = t('Зберігаємо…');
     staffCall(body).then(function (r) {
       if (r.ok) { closeModal(); loadStaff(); refresh(); return; }
-      btn.disabled = false; btn.textContent = 'Зберегти';
-      err(r.error === 'taken' ? 'Цей час перетинається з іншим записом.' : r.error === 'pin' ? 'PIN більше не дійсний. Увійдіть знову.' : 'Не вдалося зберегти.');
-    }).catch(function () { btn.disabled = false; btn.textContent = 'Зберегти'; err('Немає зв\'язку. Спробуйте ще раз.'); });
+      btn.disabled = false; btn.textContent = t('Зберегти');
+      err(r.error === 'taken' ? t('Цей час перетинається з іншим записом.') : r.error === 'pin' ? t('PIN більше не дійсний. Увійдіть знову.') : t('Не вдалося зберегти.'));
+    }).catch(function () { btn.disabled = false; btn.textContent = t('Зберегти'); err(t('Немає зв\'язку. Спробуйте ще раз.')); });
   });
 }
 function openEvent(id) {
   var b = S.staff.rows.find(function (x) { return x.id === id; }); if (!b) return;
   var sv = svc(b.service);
-  modal('<div class="pb-h">' + (b.kind === 'block' ? 'Закритий час' : esc(b.name || 'Запис')) + '</div><div class="pb-kv">' +
-    '<span>Дата</span><b>' + longDate(b.date) + '</b><span>Час</span><b>' + hm(b.start) + ' – ' + hm(b.start + b.dur) + '</b>' +
-    (b.kind !== 'block' ? '<span>Послуга</span><b>' + esc(sv ? sv.name : 'Інше') + '</b><span>Телефон</span><b>' + esc(b.phone || '—') + '</b>' + (b.note ? '<span>Побажання</span><b>' + esc(b.note) + '</b>' : '') + '<span>Джерело</span><b>' + (b.kind === 'client' ? 'Онлайн-запис' : 'Записала майстриня') + '</b>' : '<span>Причина</span><b>' + esc(b.note || '') + '</b>') +
-    '</div><div class="pb-err"></div><div class="pb-actions"><button type="button" class="pb-btn is-danger" data-del>' + (b.kind === 'block' ? 'Відкрити час' : 'Скасувати запис') + '</button><button type="button" class="pb-btn is-ghost" data-close>Закрити</button></div>');
+  modal('<div class="pb-h">' + (b.kind === 'block' ? t('Закритий час') : esc(b.name || t('Запис'))) + '</div><div class="pb-kv">' +
+    t('<span>Дата</span><b>') + longDate(b.date) + t('</b><span>Час</span><b>') + hm(b.start) + ' – ' + hm(b.start + b.dur) + '</b>' +
+    (b.kind !== 'block' ? t('<span>Послуга</span><b>') + esc(sv ? sv.name : t('Інше')) + t('</b><span>Телефон</span><b>') + esc(b.phone || '—') + '</b>' + (b.note ? t('<span>Побажання</span><b>') + esc(b.note) + '</b>' : '') + t('<span>Джерело</span><b>') + (b.kind === 'client' ? t('Онлайн-запис') : t('Записала майстриня')) + '</b>' : t('<span>Причина</span><b>') + esc(b.note || '') + '</b>') +
+    '</div><div class="pb-err"></div><div class="pb-actions"><button type="button" class="pb-btn is-danger" data-del>' + (b.kind === 'block' ? t('Відкрити час') : t('Скасувати запис')) + t('</button><button type="button" class="pb-btn is-ghost" data-close>Закрити</button></div>'));
   var armed = false, del = modalRoot.querySelector('[data-del]');
   del.addEventListener('click', function () {
-    if (!armed) { armed = true; del.textContent = 'Натисніть ще раз, щоб підтвердити'; return; }
+    if (!armed) { armed = true; del.textContent = t('Натисніть ще раз, щоб підтвердити'); return; }
     del.disabled = true;
     staffCall({ action: 'staff_delete', id: id }).then(function (r) {
       if (r.ok || r.error === 'not_found') { closeModal(); loadStaff(); refresh(); }
-      else { del.disabled = false; modalRoot.querySelector('.pb-err').innerHTML = '<div class="pb-msg is-err">Не вдалося видалити.</div>'; }
-    }).catch(function () { del.disabled = false; modalRoot.querySelector('.pb-err').innerHTML = '<div class="pb-msg is-err">Немає зв\'язку.</div>'; });
+      else { del.disabled = false; modalRoot.querySelector('.pb-err').innerHTML = t('<div class="pb-msg is-err">Не вдалося видалити.</div>'); }
+    }).catch(function () { del.disabled = false; modalRoot.querySelector('.pb-err').innerHTML = t('<div class="pb-msg is-err">Немає зв\'язку.</div>'); });
   });
 }
 function openChangePin() {
-  modal('<div class="pb-h">Новий PIN</div><form class="pb-cpform"><div class="pb-field"><label for="pa-cp">4 цифри</label><input id="pa-cp" inputmode="numeric" maxlength="4" autocomplete="off"></div><div class="pb-err"></div>' +
-    '<div class="pb-actions"><button type="button" class="pb-btn is-ghost" data-close>Скасувати</button><button class="pb-btn" type="submit">Зберегти</button></div></form>');
+  modal(t('<div class="pb-h">Новий PIN</div><form class="pb-cpform"><div class="pb-field"><label for="pa-cp">4 цифри</label><input id="pa-cp" inputmode="numeric" maxlength="4" autocomplete="off"></div><div class="pb-err"></div>') +
+    t('<div class="pb-actions"><button type="button" class="pb-btn is-ghost" data-close>Скасувати</button><button class="pb-btn" type="submit">Зберегти</button></div></form>'));
   modalRoot.querySelector('.pb-cpform').addEventListener('submit', function (e) {
     e.preventDefault();
     var v = modalRoot.querySelector('#pa-cp').value.trim(), err = modalRoot.querySelector('.pb-err');
-    if (!/^\d{4}$/.test(v)) { err.innerHTML = '<div class="pb-msg is-err">PIN має складатися з 4 цифр.</div>'; return; }
+    if (!/^\d{4}$/.test(v)) { err.innerHTML = t('<div class="pb-msg is-err">PIN має складатися з 4 цифр.</div>'); return; }
     staffCall({ action: 'change_pin', newPin: v }).then(function (r) {
-      if (r.ok) { S.staff.pin = v; err.innerHTML = '<div class="pb-msg is-ok">PIN змінено.</div>'; setTimeout(closeModal, 900); }
-      else err.innerHTML = '<div class="pb-msg is-err">Не вдалося змінити PIN.</div>';
-    }).catch(function () { err.innerHTML = '<div class="pb-msg is-err">Немає зв\'язку.</div>'; });
+      if (r.ok) { S.staff.pin = v; err.innerHTML = t('<div class="pb-msg is-ok">PIN змінено.</div>'); setTimeout(closeModal, 900); }
+      else err.innerHTML = t('<div class="pb-msg is-err">Не вдалося змінити PIN.</div>');
+    }).catch(function () { err.innerHTML = t('<div class="pb-msg is-err">Немає зв\'язку.</div>'); });
   });
 }
 
@@ -526,7 +532,7 @@ root.addEventListener('click', function (e) {
     if (d.master) { S.master = d.master; S.start = null; return render(); }
     if (d.date) { S.date = d.date; S.start = null; S.msg = null; return render(); }
     if (d.start) { S.start = +d.start; S.msg = null; return render(); }
-    if (d.cancel) { if (d.armed !== '1') { t.dataset.armed = '1'; t.textContent = 'Точно скасувати?'; return; } return cancelMine(d.cancel); }
+    if (d.cancel) { if (d.armed !== '1') { t.dataset.armed = '1'; t.textContent = t('Точно скасувати?'); return; } return cancelMine(d.cancel); }
   } else {
     if (d.pinfor) { S.staff.pinFor = d.pinfor; S.staff.err = ''; return render(); }
     if (d.week) { var w = +d.week; S.staff.week = w === 0 ? ymd(monday(new Date())) : ymd(addDays(parse(S.staff.week), 7 * w)); return loadStaff(); }
